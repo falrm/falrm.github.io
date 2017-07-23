@@ -12,35 +12,56 @@
       background-color: #616161;
       font-family: sans-serif;
       align-content: center;
+      text-align: center;
     }
-    body * {
+    body > * {
       width:95%;
       margin:auto;
     }
     body h1 {
       margin-top:15vh;
     }
-    h1, p {
+    body h2 {
+      margin-top:5vh;
+    }
+    h1, h2, p {
       text-align: center;
     }
-    body a {
+    a.download {
       color: white;
       text-align: center;
       text-decoration: none;
+      display: -webkit-flex;
+      display: flex;
+
+  align-items: center;
+  justify-content: center;
     }
-    body a img {
-      max-width: 500px;
+    img.logo {
+      max-width: 380px;
+      margin: auto;
+    }
+    .screenshots {
+      margin-top: 5vh;
+      text-align: center;
     }
   </style>
 </head>
 
 <body>
   <h1>TOPOLOGICA</h1>
-  <a href="topologica-alpha-6.apk">
-    <p><img src="topologica.png"></p>
-    <p>Download Alpha 6 for Android 5.0+</p>
-  </a>
-  <p>
+  <img class="logo" src="topologica.png">
+  <h2>Music Editing Made Easy</h2>
+  <div class="screenshots">
+    <img src="instrument_screenshot.png"  width="288px" height="512px" />
+    <img src="sequencer_screenshot.png"  width="288px" height="512px" />
+  </div>
+  <div>
+    <a class="download" href="topologica-alpha-7.apk">
+      <img src="topologica.png" width="50px" height="50px" />
+      <span>Download Alpha 7 for Android 6.0+</span>
+    </a>
+  </div>
     <!--a href="howto.html">What is Topologica?</a-->
   </p>
 
