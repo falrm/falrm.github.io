@@ -72,6 +72,12 @@
     .screenshot > * {
       margin-bottom: 3vh;
     }
+
+    .screenshot > img.desktop {
+    width: auto; 
+    max-width: 100%; 
+    max-height: 512px;
+    }
   </style>
 </head>
 
@@ -92,10 +98,14 @@
       <img src="sequencer_screenshot.png"  width="288px" height="512px" />
       <span>Compose sophisticated music intuitively</span>
     </span>
+    <span class="screenshot">
+      <img class="desktop" src="chromebook_screenshot.png" />
+      <span>Chromebook support</span>
+    </span>
   </div>
   <div>
     <a class="download" href="topologica-alpha-7.apk">
-      <img src="topologica.png" width="50px" height="50px" />
+      <img style="max-width: 100%" src="topologica.png" width="50px" height="50px" />
       <span>Download Alpha 7 for Android 6.0+</span>
     </a>
   </div>
