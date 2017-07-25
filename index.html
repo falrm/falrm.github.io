@@ -34,16 +34,6 @@
       text-align: center;
     }
 
-    a.download {
-      color: white;
-      text-align: center;
-      text-decoration: none;
-      display: -webkit-flex;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
     img.logo {
       max-width: 380px;
       margin: auto;
@@ -74,9 +64,31 @@
     }
 
     .screenshot > img.desktop {
-    width: auto; 
-    max-width: 100%; 
-    max-height: 512px;
+      width: auto; 
+      max-width: 100%; 
+      max-height: 512px;
+    }
+
+    a.download {
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      display: -webkit-flex;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #show-paid-alpha {
+      display: none;
+    }
+
+    #show-paid-alpha + label + div {
+
+    }
+
+    #show-paid-alpha:not(:checked) + label + div {
+      display: none;
     }
   </style>
 </head>
@@ -102,12 +114,28 @@
       <img class="desktop" src="chromebook_screenshot.png" />
       <span>Chromebook support</span>
     </span>
+    <span class="screenshot">
+      <iframe id="ytplayer" type="text/html" width="288" height="512"
+        src="https://www.youtube.com/embed/FjqRDKMraWo?autoplay=0&origin=http://topologica.co"
+        frameborder="0"></iframe>
+      <span>3-Minute Demo: Funk in C#m</span>
+    </span>
   </div>
   <div>
     <a class="download" href="topologica-alpha-7.apk">
       <img style="max-width: 100%" src="topologica.png" width="50px" height="50px" />
       <span>Download Alpha 7 for Android 6.0+</span>
     </a>
+  </div>
+  <div>
+      <input type="checkbox" id="show-paid-alpha" />
+      <label for="show-paid-alpha">View Paid Alpha information</label>
+      <div>
+        <a class="download" href="topologica-alpha-7.apk">
+          <img style="max-width: 100%" src="topologica.png" width="50px" height="50px" />
+          <span>Download Alpha 7 for Android 6.0+</span>
+        </a>
+      </div>
   </div>
   <!--a href="howto.html">What is Topologica?</a-->
   </p>
