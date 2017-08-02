@@ -98,16 +98,64 @@
       justify-content: center;
     }
 
+    .paid-alpha-info {
+      margin-top: 3vh;
+    }
+
+    .paid-alpha-info, .paid-alpha-info * {
+      text-align: center;
+    }
+
     #show-paid-alpha {
       display: none;
     }
 
-    #show-paid-alpha + label + div {
+    label [for=show-paid-alpha],
+    .paid-alpha-info img,
+    .paid-alpha-details {
+      margin: auto;
+    }
 
+    #show-paid-alpha + label + div {
+      margin-top: 2vh;
+      display: table;
+    }
+
+    #show-paid-alpha + label + div > a {
+      display: table-row;
+    }
+
+    #show-paid-alpha + label + div > a > * {
+      display: table-cell;
+      vertical-align: middle;
     }
 
     #show-paid-alpha:not(:checked) + label + div {
       display: none;
+    }
+
+    #show-paid-alpha + label:after {
+      width: 0; 
+      height: 0; 
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-left: 5px solid white;
+      margin-left: 1vh;
+      content: "";
+      display: inline-block;
+    }
+
+    #show-paid-alpha:checked + label:after {
+      width: 0; 
+      height: 0; 
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 5px solid white;
+      transform: translateY(2.5px);
+    }
+
+    .paid-alpha-info .download span {
+      text-align: left;
     }
   </style>
 </head>
@@ -207,20 +255,24 @@
   </div>
   <div>
     <a class="download" href="topologica-alpha-7.apk">
-      <img style="max-width: 100%" src="topologica.png" width="50px" height="50px" />
-      <span>Download Alpha 7 for Android 6.0+</span>
+      <img style="max-width: 100%" src="topologica-old.png" width="50px" height="50px" />
+      <span>Download Alpha 7 for Android 5.0+</span>
     </a>
   </div>
-  <!--div>
+  <div class="paid-alpha-info">
       <input type="checkbox" id="show-paid-alpha" />
-      <label for="show-paid-alpha">View Paid Alpha information</label>
-      <div>
-        <a class="download" href="topologica-alpha-7.apk">
+      <label for="show-paid-alpha">View paid alpha information</label>
+      <div class="paid-alpha-details">
+        <a class="download" href="https://play.google.com/apps/testing/com.jonlatane.beatpad">
           <img style="max-width: 100%" src="topologica.png" width="50px" height="50px" />
-          <span>Download Alpha 7 for Android 6.0+</span>
+          <span>Step 1: Sign up for the Alpha on Google Play</span>
+        </a>
+        <a class="download" href="https://play.google.com/store/apps/details?id=com.jonlatane.beatpad">
+          <img style="max-width: 100%" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" width="163px" height="64px" />
+          <span>Step 2: Download Alpha 8 for Android 5.0+ for $1</span>
         </a>
       </div>
-  </div-->
+  </div>
   </p>
 
 </body>
