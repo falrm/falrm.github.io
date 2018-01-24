@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/png" href="favicon.png" />
+  <title>Topologica</title>
+  <style>
+    body {
+      color: white;
+      background-color: #616161;
+      font-family: sans-serif;
+      align-content: center;
+      text-align: center;
+    }
+
+    body>* {
+      width: 95%;
+      margin: auto;
+    }
+
+    body h1 {
+      margin-top: 15vh;
+      margin-bottom: 5vh;
+    }
+
+    body h2 {
+      margin-top: 5vh;
+    }
+
+    body h3 {
+      margin-top: 4vh;
+    }
+
+    h1,
+    h2 {
+      text-align: center;
+    }
+
+    body > p,
+    body > div {
+      text-align: left;
+      max-width: 700px;
+      margin-top: 3vh;
+    }
+
+    body > div > ol {
+      margin-left: -1em;
+    }
+
+    body > div > ol li {
+      padding-left: 1vh;
+      margin-top: 1vh;
+    }
+
+    img.logo {
+      max-width: 380px;
+      margin: auto;
+    }
+
+    .screenshots {
+      margin-top: 5vh;
+      text-align: center;
+      display: -webkit-flex;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .screenshot {
+      display: -webkit-flex;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      margin-left: 1vh;
+      margin-right: 1vh;
+    }
+
+    .screenshot > * {
+      margin-bottom: 3vh;
+    }
+
+    .screenshot > img.desktop {
+      width: auto; 
+      max-width: 100%; 
+      max-height: 512px;
+    }
+
+    a.download {
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      display: -webkit-flex;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .paid-alpha-info {
+      margin-top: 3vh;
+    }
+
+    .paid-alpha-info, .paid-alpha-info * {
+      text-align: center;
+    }
+
+    #show-paid-alpha {
+      display: none;
+    }
+
+    label [for=show-paid-alpha],
+    .paid-alpha-info img,
+    .paid-alpha-details {
+      margin: auto;
+    }
+
+    #show-paid-alpha + label + div {
+      margin-top: 2vh;
+      display: table;
+    }
+
+    #show-paid-alpha + label + div > a {
+      display: table-row;
+    }
+
+    #show-paid-alpha + label + div > a > * {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    #show-paid-alpha:not(:checked) + label + div {
+      display: none;
+    }
+
+    #show-paid-alpha + label:after {
+      width: 0; 
+      height: 0; 
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-left: 5px solid white;
+      margin-left: 1vh;
+      content: "";
+      display: inline-block;
+    }
+
+    #show-paid-alpha:checked + label:after {
+      width: 0; 
+      height: 0; 
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 5px solid white;
+      transform: translateY(2.5px);
+    }
+
+    .paid-alpha-info .download span {
+      text-align: left;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>TOPOLOGICA</h1>
+  <img class="logo" src="topologica.png">
+  <h2>Unlock Your Musical Potential</h2>
+  <p>
+    Topologica is <i>not</i> yet another keyboard app. Topologica turns
+    the phone in your pocket into an instrument that can be used to play
+    any song you could want to play, and to make it sound <i>good</i>.
+  </p>
+  <p>
+    Well actually, it's four instruments in one, and each of them can be
+    configured to sound like any one of 128 General MIDI instruments.
+  </p>
+  <p>
+    The goal here is to build both the keytar of the 2010s, and the tool
+    composers plug into their computers to work with the ideas they found
+    during their commutes.
+  </p>
+  <h3>For Non-Musicians</h3>
+  <div>
+  <ol>
+    <li>Open the app and touch everything you see and listen to your sounds.</li>
+    <li>
+      Point your phone up and down &mdash; from the sky to the ground &mdash;
+      to make your sounds higher or lower.
+    </li>
+    <li>
+      Try playing the green note on the bottom Keyboard, and everything but green
+      on the top board (the Colorboard).
+      <ul>
+        <li>
+          Scroll the Keyboard all the way to the left/bottom of its range by swiping
+          from its edges, and scroll the Colorboard to the middle of its range (i.e.,
+          tenor range or where people sing) by holding your phone parallel to the ground.
+        </li>
+        <li>
+          Congratulations: You've learned to play jazz voicings that take pianists
+          years to learn!
+        </li>
+      </ul>
+    </li>
+    <li>
+      Play with the other modes and sounds in the app. In the crazy top navigation,
+      to the right in the middle is generally "forward." But don't be afraid to go
+      backward or diagonally!
+    </li>
+    <li>Keep doing this until you sound good.</li>
+    <li>Watch the people of the gender of your choosing swoon at your suave sounds.</li>
+    <li>
+      Look up some chords to songs you like and learn to play them in a way you like.
+      <ul>
+        <li>
+          Note that this may not yet be possible for all songs as this app is still in alpha!
+        </li>
+        <li>
+          But hey, music is all about learning and exploring anyway.
+        </li>
+      </ul>
+    </li>
+    <li>You are now a musician.</li>
+  </ol>
+  </div>
+  <h3>For Musicians</h3>
+  <p>
+    Get that tune out of your head on your commute. Whip your phone out to show some
+    theory stuff in classes you teach or figure out new harmonies in your own work.
+    Have fun!
+  </p>
+  <h2>Screenshots & Video</h2>
+  <div class="screenshots">
+    <span class="screenshot">
+      <img src="instrument_screenshot.png"  width="288px" height="512px" />
+      <span>Play complex voicings the second you begin</span>
+    </span>
+    <span class="screenshot">
+      <img src="sequencer_screenshot.png"  width="288px" height="512px" />
+      <span>Compose sophisticated music intuitively</span>
+    </span>
+    <span class="screenshot">
+      <iframe id="ytplayer" type="text/html" width="288" height="512"
+        src="https://www.youtube.com/embed/mpJnb3K7Vko?autoplay=0&origin=http://topologica.co"
+        frameborder="0"></iframe>
+      <span>3-Minute Demo: Funk in C#m</span>
+    </span>
+    <span class="screenshot">
+      <img class="desktop" src="chromebook_screenshot.png" />
+      <span>Chromebook support</span>
+    </span>
+    <span class="screenshot">
+      <img src="instrument_select_screenshot.png"  width="288px" height="512px" />
+      <span>Use 128 General MIDI instruments</span>
+    </span>
+  </div>
+  <div>
+    <a class="download" href="topologica-alpha-10.apk">
+      <img style="max-width: 100%; margin-right: 10px;" src="topologica.png" width="50px" height="50px" />
+      <span>Download Alpha 10 free for Android 5.0+</span>
+    </a>
+  </div>
+  <div>
+    <a class="download" href="https://play.google.com/store/apps/details?id=com.jonlatane.beatpad">
+      <img style="max-width: 100%" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" width="163px" height="64px" />
+      <span>Download the paid version</span>
+    </a>
+  </div>
+
+</body>
+
+</html>
