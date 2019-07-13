@@ -50,28 +50,53 @@
 									<ol>
 										<li>Open the app and touch everything you see and listen to your sounds.</li>
 										<li>
-										Point your phone up and down &mdash; from the sky to the ground &mdash;
-										to make your sounds higher or lower.
+											You have three On-Screen Instruments that can be summoned to the screen: the Keyboard, the Colorboard, and the Orbifold. 
+											Find the buttons for them together.
+											<ul>
+												<li>
+													Point your phone up and down &mdash; from the sky to the ground &mdash;
+													to make your sounds higher or lower on the Colorboard and Orbifold.
+												</li>
+												<li>
+													Scroll the Keyboard all the way to the left/bottom of its range by swiping
+													from its edges.
+												</li>
+											</ul>
 										</li>
 										<li>
-										Try playing the green note on the bottom Keyboard, and everything but green
-										on the top board (the Colorboard).
-										<ul>
-											<li>
-											Scroll the Keyboard all the way to the left/bottom of its range by swiping
-											from its edges, and scroll the Colorboard to the middle of its range (i.e.,
-											tenor range or where people sing) by holding your phone parallel to the ground.
-											</li>
-											<li>
-											Congratulations: You've learned to play jazz voicings that take pianists
-											years to learn!
-											</li>
-										</ul>
+											You have two parts created for you by default: Drums and Piano. Each of these Parts can be assigned to
+											your on-screen instruments - although Drum parts can <i>only</i> be assigned to the Keyboard. For the
+											purposes of this tutorial, use the Keyboard part on all of the instruments.
 										</li>
 										<li>
-										Play with the other modes and sounds in the app. In the crazy top navigation,
-										to the right in the middle is generally "forward." But don't be afraid to go
-										backward or diagonally!
+											The green note is always your "root" - a home base for the chord you're on. By default we make
+											your chord a "Chromatic" scale - meaning you can play any note/color.
+										</li>
+										<li>
+											Find where the "Chromatic" (or "Chrom.") chord is. Try changing it by long-pressing it (which will involve 
+											using the Orbifold in a new way), and see how it changes what you can play on the Colorboard and what notes are displayed on the Keyboard.
+											<ul>
+												<li>You can press the "Custom" button to select a chord with an arbitrary set of notes by playing them on the Keyboard.</li>
+												<li>After selecting the "Basic" Orbifold mode, try the following:
+													<ul>
+														<li>Scroll the keyboard to the left; press and hold a green "bass" or "root" note with your thumb</li>
+														<li>Point your device upward to scroll the Colorboard to the right (towards higher notes) and play non-green notes with your other fingers</li>
+														<li>
+															Move the chord progression forward by clicking the chord to the right in the Orbifold and playing the new green and other notes
+															<ul><li>These move in a cycle; in "Basic" mode the only cycle is called "ii-V-I" or "two-five-one."</li></ul>
+														</li>
+													</ul>
+												</li>
+												<li>
+													Congratulations: You've learned to play jazz voicings that take pianists
+													years to learn!
+												</li>
+											</ul>
+										</li>
+										<li>
+											Play with the other modes and sounds in the Orbifold. Generally,
+											to the right in the middle is generally "forward." But don't be afraid to go
+											backward or diagonally!
 										</li>
 										<li>Keep doing this until you sound good.</li>
 										<li>Watch the people of the gender of your choosing swoon at your suave sounds.</li>
@@ -79,24 +104,124 @@
 										Look up some chords to songs you like and learn to play them in a way you like.
 										<ul>
 											<li>
-											Note that this may not yet be possible for all songs as this app is still in alpha!
+												Note that this may not be possible for all songs. You can learn to create custom Harmonies to cover these cases, though!
 											</li>
 											<li>
-											But hey, music is all about learning and exploring anyway.
+												Hey, music is all about learning and exploring anyway.
 											</li>
 										</ul>
 										</li>
-										<li>You are now a musician.</li>
+										<li>You are now a musician!</li>
+										<li>
+											You should start learning to read and write music, so keep reading. Do some research on what "melody" and "harmony" 
+											are before continuing if you are unfamiliar.
+										</li>
 									</ol>
 								</p>
 								<header class="major">
 									<h1>For Musicians</h1>
 								</header>
 								<p>
-									Get that tune out of your head on your commute. Whip your phone out to show some
-									theory stuff in classes you teach or figure out new harmonies in your own work.
-									Have fun!
+									BeatScratch's primary document (the thing you're always editing, that it is auto-saving)
+									is called a "Palette." It could be renamed to "Score" at some point if that made sense. 
+									It's just sheet music, or piano reel music, or one day tabs - raw musical note data - divided
+									up into  voices so this information is kept independent of whatever chord naming and whatever 
+									other music theory we want to pile on top of it.
 								</p>
+								<p>
+									BeatScratch's notion of a "Melody" is chromatic, meaning it can be all 12 notes you could play.
+									However, BeatScratch always has a "Harmony" in place and can make any Melody conform to any Harmony
+									in countless ways, both in terms of notes and rhythm. Atop this, a Palette/Score is primarily divided
+									two ways: into Parts and Sections.
+								</p>
+								<h3>Parts</h3>
+								<p>
+									A Part is <i>an Instrument patch</i> and <i>a list of Melodies</i>. Note that this means Melodies cannot be shared between Parts; however, Melodies
+									may be <i>copied</i> between Parts. It is the BeatScratch analogue to your Bassoon III Part. (Well, maybe a unified multi-voice Bassoon I, II and II part.)
+								</p>
+								<ul>
+										<li><b>MIDI Audio Parts</b>
+											<ul>
+												<li><i>(Tonal) Parts</i>: Can add up to 8 (7 if a drum track is being used). Will be mapped to MIDI channels according to their order.</li>
+												<li><i>Drum Parts</i>: BeatScratch will only let you add one of these. Always maps to MIDI channel 10.</li>
+											</ul>
+										</li>
+										<li><b>Recorded Audio Parts</b>
+												<ul><li><i>Planned but unprioritized; these will not necessarily need an Instrument reference, though it could be used for postprocessing.</i></li></ul>
+										</li>
+								</ul>
+								<h3>Sections</h3>
+								<p>
+									A Section is <i>a Harmony</i> and <i>a list of Melody References</i>. It is the analogue to a single Chorus, Verse, Bridge, Exposition, Development
+									&mdash; however you choose to structure your music.
+								</p>
+								<ul>
+									<li>
+										<i>Melody References</i> are references to Melodies from the Parts list. However, a Melody Reference can have its own volume
+										(and eventually transposition and other) that is section-specific. (Changes to the base structure of a Melody would affect
+										<i>all</i> Sections that reference that Melody.)
+									</li>
+									<li>
+										Eventually repeats of/between Sections are planned; feedback on use cases is appreciated!
+									</li>
+								</ul>
+								<h2>Pallette UI</h2>
+								<p>
+								</p>
+								<ul>
+									<li>
+										<h3>On-Screen Instruments</h3>
+										<ul>
+												<li><b>Keyboard</b>: Can be used to play any Part, including Drum parts. Can play notes outside of the current Chord. Used to specify custom chords along with the Orbifold. Move up and down by swiping from the left/right edges.</li>
+												<li><b>Colorboard</b>: Can only play Tonal Parts, and only notes in the current Chord. Move up and down by pointing the device up and down.</li>
+												<li><b>Orbifold</b>: Can only play Tonal Parts, and only notes in the current Chord. Used in choosing Chords for the Harmony.</li>
+										</ul>
+									</li>
+									<li>
+										<h3>Section List</h3>
+										<ul>
+											<li>Select a Section by clicking it.</li>
+											<li>Create a new Section with the "+" button.</li>
+											<li>Long click to rename, delete, copy/paste Harmonies between, and Duplicate Sections.</li>
+											<li>Drag and drop to reorder.</li>
+										</ul>
+									</li>
+									<li>
+											<h3>Harmony</h3>
+											<ul>
+												<li>Click to playback from a point and select that Chord.</li>
+												<li>Long-press to select a point in time and add a Chord change, remove the current Chord change, or change the Chord at that point.</li>
+												<li>While editing a Chord, click another Chord to copy it.</li>
+												<li>There must always be at least one Chord in the Harmony.</li>
+											</ul>
+									</li>
+									<li>
+										<h3>Part List</h3>
+										<ul>
+												<li><b>Part Name/Instrument</b>
+														<ul>
+															<li>Click to change Instrument (Tonal Parts)</li>
+														</ul>
+												</li>
+												<li><b>Melody References</b>
+													<ul>
+														<li>Enable/disable a Melody Reference for a Section with the left button.</li>
+														<li>Open a Melody by clicking it.</li>
+														<li>Create a new Melody with the "+" button.</li>
+														<li>Drag and drop to reorder.</li>
+													</ul>
+												</li>
+										</ul>
+									</li>
+									<li>
+										<h3>Palette Toolbar</h3>
+										<ul>
+												<li>Contains Playback controls and On-Screen Instrument toggles</li>
+												<li>Tap the tempo button in time to set the tempo; long-press it to set the numerical value with precision.</li>
+												<li>The Volume button lets you customize volumes of Parts (which is universal) and Melody References (which are Section-specific).</li>
+										</ul>
+									</li>
+								</ul>
 							</section>
 
 					</div>
