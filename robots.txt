@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://topologica.io/sitemap.xml
+Sitemap: https://beatscratch.io/sitemap.xml
