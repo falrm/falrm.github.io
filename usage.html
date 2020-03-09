@@ -44,92 +44,92 @@
 						<!-- Post -->
 							<section class="post">
 								<header class="major">
-									<h1>For Non-Musicians</h1>
+									<h1>Basic Operations</h1>
 								</header>
 								<p>
-									<ol>
-										<li>Open the app and touch everything you see and listen to your sounds.</li>
-										<li>
-											You have three On-Screen Instruments that can be summoned to the screen: the Keyboard, the Colorboard, and the Orbifold. 
-											Find the buttons for them together.
-											<ul>
-												<li>
-													Point your phone up and down &mdash; from the sky to the ground &mdash;
-													to make your sounds higher or lower on the Colorboard and Orbifold.
-												</li>
-												<li>
-													Scroll the Keyboard all the way to the left/bottom of its range by swiping
-													from its edges.
-												</li>
-											</ul>
-										</li>
-										<li>
-											You have two parts created for you by default: Drums and Piano. Each of these Parts can be assigned to
-											your on-screen instruments - although Drum parts can <i>only</i> be assigned to the Keyboard. For the
-											purposes of this tutorial, use the Keyboard part on all of the instruments.
-										</li>
-										<li>
-											The green note is always your "root" - a home base for the chord you're on. By default we make
-											your chord a "Chromatic" scale - meaning you can play any note/color.
-										</li>
-										<li>
-											Find where the "Chromatic" (or "Chrom.") chord is. Try changing it by long-pressing it (which will involve 
-											using the Orbifold in a new way), and see how it changes what you can play on the Colorboard and what notes are displayed on the Keyboard.
-											<ul>
-												<li>You can press the "Custom" button to select a chord with an arbitrary set of notes by playing them on the Keyboard.</li>
-												<li>After selecting the "Basic" Orbifold mode, try the following:
-													<ul>
-														<li>Scroll the keyboard to the left; press and hold a green "bass" or "root" note with your thumb</li>
-														<li>Point your device upward to scroll the Colorboard to the right (towards higher notes) and play non-green notes with your other fingers</li>
-														<li>
-															Move the chord progression forward by clicking the chord to the right in the Orbifold and playing the new green and other notes
-															<ul><li>These move in a cycle; in "Basic" mode the only cycle is called "ii-V-I" or "two-five-one."</li></ul>
-														</li>
-													</ul>
-												</li>
-												<li>
-													Congratulations: You've learned to play jazz voicings that take pianists
-													years to learn!
-												</li>
-											</ul>
-										</li>
-										<li>
-											Play with the other modes and sounds in the Orbifold. Generally,
-											to the right in the middle is generally "forward." But don't be afraid to go
-											backward or diagonally!
-										</li>
-										<li>Keep doing this until you sound good.</li>
-										<li>Watch the people of the gender of your choosing swoon at your suave sounds.</li>
-										<li>
-										Look up some chords to songs you like and learn to play them in a way you like.
-										<ul>
-											<li>
-												Note that this may not be possible for all songs. You can learn to create custom Harmonies to cover these cases, though!
-											</li>
-											<li>
-												Hey, music is all about learning and exploring anyway.
-											</li>
-										</ul>
-										</li>
-										<li>You are now a musician!</li>
-										<li>
-											You should start learning to read and write music, so keep reading. Do some research on what "melody" and "harmony" 
-											are before continuing if you are unfamiliar.
-										</li>
-									</ol>
+									At some point, I will create 30s-1m30s video tutorials of the following operations.
+									But this is a fairly comprehensive of all the high-level functionality of BeatScratch.
+									If you're a user and would like to submit YouTube links, please do!
 								</p>
+								<ol>
+									<li>Creating and Managing Palettes</li>
+									<li>Creating and Editing Melodies
+										<ul>
+											<li>Melodic vs. Drum Melodies</li>
+											<li>Length and Subdivisions Per Beat</li>
+											<li>Fixed Position vs. Relative to Chord</li>
+										</ul>
+									</li>
+									<li>Editing the Harmony of a Section</li>
+									<li>Creating and Managing Sections</li>
+									<li>Creating and Managing Parts
+										<ul>
+											<li>Melodic vs. Drum Parts</li>
+										</ul>
+									</li>
+									<li>Copying and Pasting/Sharing
+										<ul>
+											<li>Melodies</li>
+											<li>Harmonies</li>
+											<li>Chords</li>
+											<li>Sections (Duplicating)</li>
+											<li>Palettes</li>
+										</ul>
+									</li>
+									<li>Playing and Managing On-Screen Instruments
+										<ul>
+											<li>External MIDI Controllers</li>
+										</ul>
+									</li>
+								</ol>
+								<h2>Composing Operations</h2>
+								The basic operations above can be combined to do a lot of things musicians do in songs:
+								<ul>
+									<li>Duplicate Section and change main Melody (for your second, third, etc. verses)</li>
+									<li>Duplicate Melody and make half-time/double-time</li>
+									<li>Duplicate Section/Harmony and change last few chords (e.g., half-cadence to full cadence, or verse to pre-chorus)</li>
+								</ul>
 								<header class="major">
-									<h1>For Musicians</h1>
+									<h1>Overview</h1>
 								</header>
 								<p>
 									BeatScratch's primary document (the thing you're always editing, that it is auto-saving)
-									is called a "Palette." It could be renamed to "Score" at some point if that made sense. 
-									It's just sheet music, or piano reel music, or one day tabs - raw musical note data - divided
-									up into  voices so this information is kept independent of whatever chord naming and whatever 
-									other music theory we want to pile on top of it.
+									is called a <i>Palette</i>. Put simply, a Palette is a musical score, but broken down in such 
+									a way that not only can sections of music be repeated, but <i>musical themes</i> can be repeated
+									on top of new Harmonies. This happens to make music straightforward to edit with your thumbs.
 								</p>
 								<p>
-									BeatScratch's notion of a "Melody" is chromatic, meaning it can be all 12 notes you could play.
+									At its root, a Palette is divided up into just Parts and Sections. A Part is what you intuitively think
+									it is: Piano, Alto, Soprano, Euphonium, Drums, etc. A Section might be a Verse, Chorus, Bridge, Sonata
+									Theme, Transition, Retransition, Recapitulation. However fancy and European you want to get, it's 
+									important to note that <i>every Section has a Harmony</i>. The rest of the high-level structure follows:
+								</p>
+								<p>
+									<ul>
+										<li>
+											A <b>Score</b> has:
+											<ul>
+												<li><b>Parts</b>. A Part has:<ul>
+													<li>An <b>Instrument</b>, like Drums, Guitar, or Piano.</li>
+													<li><b>Melodies</b>.</li>
+												</ul></li>
+											</ul>
+											<ul>
+												<li><b>Sections</b>. A Section has:<ul>
+													<li>A <b>Harmony</b>.</li>
+													<li><b>Melody References</b>.
+														<ul>
+															<li>References a Melody from a Part (via internal IDs).</li>
+															<li>Has a <b>Volume</b>.</li>
+														</ul>
+													</li>
+												</ul></li>
+											</ul>
+										</li>
+									</ul>
+								</p>
+								<p>
+									BeatScratch's notion of a Melody is chromatic, meaning it can be all 12 notes you could play.
 									However, BeatScratch always has a "Harmony" in place and can make any Melody conform to any Harmony
 									in countless ways, both in terms of notes and rhythm. Atop this, a Palette/Score is primarily divided
 									two ways: into Parts and Sections.
@@ -142,7 +142,7 @@
 								<ul>
 										<li><b>MIDI Audio Parts</b>
 											<ul>
-												<li><i>(Tonal) Parts</i>: Can add up to 8 (7 if a drum track is being used). Will be mapped to MIDI channels according to their order.</li>
+												<li><i>Melodic Parts</i>: Can add up to 8 (7 if a drum track is being used). Will be mapped to MIDI channels according to their order.</li>
 												<li><i>Drum Parts</i>: BeatScratch will only let you add one of these. Always maps to MIDI channel 10.</li>
 											</ul>
 										</li>
@@ -173,8 +173,8 @@
 										<h3>On-Screen Instruments</h3>
 										<ul>
 												<li><b>Keyboard</b>: Can be used to play any Part, including Drum parts. Can play notes outside of the current Chord. Used to specify custom chords along with the Orbifold. Move up and down by swiping from the left/right edges.</li>
-												<li><b>Colorboard</b>: Can only play Tonal Parts, and only notes in the current Chord. Move up and down by pointing the device up and down.</li>
-												<li><b>Orbifold</b>: Can only play Tonal Parts, and only notes in the current Chord. Used in choosing Chords for the Harmony.</li>
+												<li><b>Colorboard</b>: Can only play Melodic Parts, and only notes in the current Chord. Move up and down by pointing the device up and down.</li>
+												<li><b>Orbifold</b>: Can only play Melodic Parts, and only notes in the current Chord. Used in choosing Chords for the Harmony.</li>
 										</ul>
 									</li>
 									<li>
@@ -200,7 +200,7 @@
 										<ul>
 												<li><b>Part Name/Instrument</b>
 														<ul>
-															<li>Click to change Instrument (Tonal Parts)</li>
+															<li>Click to change Instrument (Melodic Parts)</li>
 														</ul>
 												</li>
 												<li><b>Melody References</b>
