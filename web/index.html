@@ -27,8 +27,62 @@
 
   <title>beatscratch_flutter_redux</title>
   <link rel="manifest" href="manifest.json">
+  <style>
+    @font-face {
+      font-family: VulfSans;
+      src: url("/assets/fonts/vulf_sans_regular.otf") format("opentype");
+    }
+
+    @font-face {
+      font-family: VulfSans;
+      font-weight: bold;
+      src: url("/assets/fonts/vulf_sans_bold.otf") format("opentype");
+    }
+
+    body {
+      background-color: #212121;
+      color: #FFFFFF;
+    }
+
+    a:link {
+      color: #884DF2;
+    }
+
+    /* visited link */
+    a:visited {
+      color: #4C9AFF;
+    }
+
+    /* mouse over link */
+    a:hover {
+      color: #F652F9;
+    }
+
+    /* selected link */
+    a:active {
+      color: #4DFA90;
+    }
+
+  </style>
+  <script>
+    function hideBanner() {
+      let toRemove = document.getElementById("banner");
+      toRemove.parentElement.removeChild(toRemove);
+    }
+  </script>
 </head>
 <body>
+  <span id="banner">
+    <span style="font-family: VulfSans; font-size: 24px">
+      <b>BeatScratch Web</b>
+    </span>
+    <span style="font-family: VulfSans; font-size: 18px">
+      is pre-alpha. Ports to iOS and Mac are coming, with the <a href="index.html">Android App already available</a>.
+    </span>
+    <span style="font-family: VulfSans; font-size: 20px; padding-left:30px">
+      <a href="#" onclick="hideBanner()">OK!</a>
+    </span>
+  </span>
   <script>
       var firebaseConfig = {
         apiKey: "AIzaSyBODLuKyOB3mgwv_QHRjjWT6uGEbAyq2Qw",
