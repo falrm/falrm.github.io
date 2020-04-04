@@ -42,6 +42,7 @@
   <script src="MIDI.js/js/util/dom_request_script.js" type="text/javascript"></script>
   <!-- /MIDI.js -->
 
+  <script src="BeatScratchPlugin.js" type="text/javascript"></script>
 
   <title>BeatScratch Web Pre-Alpha</title>
   <link rel="manifest" href="manifest.json">
@@ -49,12 +50,6 @@
 <body>
 
 <script type="text/javascript">
-
-function sendMIDI(args) {
-  console.info("invoking sendMIDI with args:");
-  console.info(args)
-}
-
 window.onload = function () {
 	MIDI.loadPlugin({
 		soundfontUrl: "MIDI.js/examples/soundfont/",
