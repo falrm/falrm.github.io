@@ -31213,7 +31213,10 @@ case 2:b6=C.c.cn(b4,a7-1)
 b7=!0
 break
 default:b6=C.c.cn(b4,0)
-b7=!1}c1.pB(c5,b6,r,s,t,b7);++b5}if(i)c1.pB(c5,k,r,s,t,!0)
+b7=!1}a7=s
+a8=t
+b1=j?1:0.66
+c1.pB(c5,b6,r,a7,a8,b7,b1);++b5}if(i)c1.pB(c5,k,r,s,t,!0,1)
 try{if(m.a>0){a7=s
 a8=t
 b1=H.b([C.iz,C.iA],a)
@@ -31255,8 +31258,8 @@ t=p.a
 n=t.a===0?-100:J.aaj(t,new D.a4b())/p.a.a
 t=o.a
 m=t.a===0?-100:J.aaj(t,new D.a4c())/o.a.a
-l.pB(a,k,b,c,d,n>m)
-l.pB(a,q,b,c,d,n<=m)},
+l.pB(a,k,b,c,d,n>m,1)
+l.pB(a,q,b,c,d,n<=m,1)},
 U1:function(a,b,c,d,e){var t,s,r,q,p,o
 try{t=this.b
 if(t==null){r=T.Ui()
@@ -31279,7 +31282,7 @@ p.x2=!0
 p.k4=t
 p.lp(e)}catch(o){s=H.N(o)
 P.ba("failed to draw colorguide: "+H.c(s))}},
-pB:function(a,b,c,d,e,f){var t,s,r,q,p,o,n,m,l=this
+pB:function(a,b,c,d,e,f,g){var t,s,r,q,p,o,n,m,l=this
 if(b!=null){try{r=l.y
 if(r.a>0){q=P.dh(u.S)
 p=new H.a6(new H.a7())
@@ -31290,7 +31293,7 @@ o=new F.NO(q,p,o)
 o.k3=c
 o.ry=d
 o.y1=e
-o.q=r.a
+o.q=r.a*g
 o.ch=o.Q=3
 o.x1=!1
 o.x2=!0
@@ -31315,7 +31318,7 @@ o.cu=l.f
 o.k3=c
 o.ry=d
 o.y1=e
-o.Z=r.a
+o.Z=r.a*g
 o.ch=o.Q=3
 o.an=f
 o.x1=!1
