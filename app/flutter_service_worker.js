@@ -231,7 +231,7 @@ const RESOURCES = {
 "MIDI.js/LICENSE.txt": "c22fc40d350cad44a54887315bcd5f74",
 "index.html": "de19091dd2a982f2beccd2cf304180de",
 "/": "de19091dd2a982f2beccd2cf304180de",
-"main.dart.js": "aac62bcf19280a27c3276a4799598695",
+"main.dart.js": "2fd0670857073f68c3978534db9354f5",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
