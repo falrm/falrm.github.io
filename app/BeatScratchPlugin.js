@@ -25,6 +25,7 @@ function pushPart(part) {
   var part = JSON.parse(arguments[0]);
   var midiChannel = part[3][4]; // Derived from protos
   var midiInstrument = part[3][5];
+  isSynthesizerReady = false;
   if(midiChannel != 9) {
       MIDI.loadPlugin({
           soundfontUrl: "FluidR3_GM/",
@@ -33,8 +34,14 @@ function pushPart(part) {
               console.log(state, progress);
           },
           onsuccess: function() {
+            isSynthesizerReady = true;
             MIDI.channels[midiChannel].instrument = midiInstrument;
           }
       });
   }
+}
+
+var isSynthesizerReady = false;
+function checkSynthesizerStatus() {
+    return isSynthesizerReady;
 }
