@@ -28,6 +28,7 @@
 						<ul class="links">
 							<li><a href="index.html">Home</a></li>
 							<li class="active"><a href="usage.html">Usage</a></li>
+							<li><a href="platforms.html">Platforms</a></li>
 							<li><a href="https://medium.com/fully-automated-luxury-robot-music">Articles</a></li>
 						</ul>
 						<!--ul class="icons">
@@ -47,17 +48,17 @@
 									<h1>Basic Operations</h1>
 								</header>
 								<p>
-									At some point, I will create 30s-1m30s video tutorials of the following operations.
-									But this is a fairly comprehensive of all the high-level functionality of BeatScratch.
-									If you're a user and would like to submit YouTube links, please do!
+									The following basic operations should be reasonably self-explanatory to a musician randomly mashing
+									buttons in the UI. "+" means add a thing. Melodies and Sections, as you conventionally understand them,
+									are named as such. See the <a href="#pedantic">Detailed Overview</a> for more information.
 								</p>
 								<ol>
-									<li>Creating and Managing Palettes</li>
+									<li>Creating and Managing Scores/Palettes (not supported in Pre-Release)</li>
 									<li>Creating and Editing Melodies
 										<ul>
 											<li>Melodic vs. Drum Melodies</li>
 											<li>Length and Subdivisions Per Beat</li>
-											<li>Fixed Position vs. Relative to Chord</li>
+											<li>Fixed Position vs. Relative to Chord (not supported in Pre-Release)</li>
 										</ul>
 									</li>
 									<li>Editing the Harmony of a Section</li>
@@ -67,7 +68,7 @@
 											<li>Melodic vs. Drum Parts</li>
 										</ul>
 									</li>
-									<li>Copying and Pasting/Sharing
+									<li>Copying and Pasting/Sharing (not supported in Pre-Release)
 										<ul>
 											<li>Melodies</li>
 											<li>Harmonies</li>
@@ -83,20 +84,22 @@
 									</li>
 								</ol>
 								<h2>Composing Operations</h2>
-								The basic operations above can be combined to do a lot of things musicians do in songs:
+									The basic operations above can be combined to do a lot of things musicians do in songs:
 								<ul>
 									<li>Duplicate Section and change main Melody (for your second, third, etc. verses)</li>
 									<li>Duplicate Melody and make half-time/double-time</li>
 									<li>Duplicate Section/Harmony and change last few chords (e.g., half-cadence to full cadence, or verse to pre-chorus)</li>
 								</ul>
-								<header class="major">
-									<h1>Overview</h1>
+								<header class="major" id="pedantic">
+									<h1>Detailed Overview</h1>
 								</header>
 								<p>
 									BeatScratch's primary document (the thing you're always editing, that it is auto-saving)
-									is called a <i>Palette</i>. Put simply, a Palette is a musical score, but broken down in such 
-									a way that not only can sections of music be repeated, but <i>musical themes</i> can be repeated
-									on top of new Harmonies. This happens to make music straightforward to edit with your thumbs.
+									is called a <i>Score</i> (Palette before the pre-release). The format for this document is designed so
+									that not only can Sections of music be repeated, but <i>musical themes</i> can be repeated
+									on top of new Harmonies. (The pre-release does not support Harmony editing; <i>everything</i> is based
+									on a "C Chromatic" chord for now). This happens to make music straightforward to edit with your thumbs.
+									(Or, in the pre-release, to edit by playing on-screen or connected instruments.)
 								</p>
 								<p>
 									At its root, a Palette is divided up into just Parts and Sections. A Part is what you intuitively think
@@ -173,7 +176,7 @@
 										<h3>On-Screen Instruments</h3>
 										<ul>
 												<li><b>Keyboard</b>: Can be used to play any Part, including Drum parts. Can play notes outside of the current Chord. Used to specify custom chords along with the Orbifold. Move up and down by swiping from the left/right edges.</li>
-												<li><b>Colorboard</b>: Can only play Melodic Parts, and only notes in the current Chord. Move up and down by pointing the device up and down.</li>
+												<li><b>Colorboard</b> <i>(disabled by default in Pre-Release)</i>: Can only play Melodic Parts, and only notes in the current Chord. Move up and down by pointing the device up and down.</li>
 												<li><b>Orbifold</b>: Can only play Melodic Parts, and only notes in the current Chord. Used in choosing Chords for the Harmony.</li>
 										</ul>
 									</li>
@@ -187,7 +190,7 @@
 										</ul>
 									</li>
 									<li>
-											<h3>Harmony</h3>
+											<h3>Harmony (not modifiable in pre-release)</h3>
 											<ul>
 												<li>Click to playback from a point and select that Chord.</li>
 												<li>Long-press to select a point in time and add a Chord change, remove the current Chord change, or change the Chord at that point.</li>
