@@ -21,7 +21,27 @@ function sendMIDI() {
   }
 }
 
-function pushPart(part) {
+function createPart(part) {
+  var part = JSON.parse(arguments[0]);
+  var midiChannel = part[3][4]; // Derived from protos
+  var midiInstrument = part[3][5];
+  isSynthesizerReady = false;
+  if(midiChannel != 9) {
+      MIDI.loadPlugin({
+          soundfontUrl: "FluidR3_GM/",
+          instrument: midiInstrument,
+          onprogress: function(state, progress) {
+              console.log(state, progress);
+          },
+          onsuccess: function() {
+            isSynthesizerReady = true;
+            MIDI.channels[midiChannel].instrument = midiInstrument;
+          }
+      });
+  }
+}
+
+function updatePartConfiguration(part) {
   var part = JSON.parse(arguments[0]);
   var midiChannel = part[3][4]; // Derived from protos
   var midiInstrument = part[3][5];

@@ -238,7 +238,7 @@ const RESOURCES = {
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "manifest.json": "b9b822c4a06b7a1ecc06648af835b4fd",
-"BeatScratchPlugin.js": "f9b99055bdcc6048f0e939c33513736c",
+"BeatScratchPlugin.js": "36a124919f118a86970b94d1c197af11",
 "assets/LICENSE": "c0938dabd687233bff1d2891e8139cf1",
 "assets/AssetManifest.json": "5bd4aa967a6299398bd47d8e94bf62fe",
 "assets/FontManifest.json": "68bc30ab60fd448a6a66a4279568ecd5",
