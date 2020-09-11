@@ -235,17 +235,17 @@ const RESOURCES = {
 "MIDI.js/LICENSE.txt": "c22fc40d350cad44a54887315bcd5f74",
 "index.html": "ea32ce02e810897bce681c46bf99cb18",
 "/": "ea32ce02e810897bce681c46bf99cb18",
-"main.dart.js": "c3a9206d216a0297cc9e2f18e1a5c5dd",
+"main.dart.js": "2e06f9f3315010999b7089f2d5eed946",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "manifest.json": "b9b822c4a06b7a1ecc06648af835b4fd",
 "BeatScratchPlugin.js": "36a124919f118a86970b94d1c197af11",
-"assets/LICENSE": "3162a4d21a3d66d7c8ee04239b8c5a82",
 "assets/AssetManifest.json": "0e382922f48d6494e322f375542b2c84",
-"assets/FontManifest.json": "68bc30ab60fd448a6a66a4279568ecd5",
+"assets/NOTICES": "56c807a09f25e216e67305872785054b",
+"assets/FontManifest.json": "137283b64ac5efa85c42bc5d3f236d93",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "115e937bb829a890521f72d2e664b632",
-"assets/fonts/MaterialIcons-Regular.ttf": "56d3ffdef7a25659eab6a68a3fbfaf16",
+"assets/fonts/MaterialIcons-Regular.otf": "a68d2a28c526b3b070aefca4bac93d25",
 "assets/assets/doubleflat.svg": "3c4c162924ddb2f3ef708f5b56a93563",
 "assets/assets/add.png": "5fb7309a553b1ae4271c6b7ee7ecfc2d",
 "assets/assets/stop.png": "da218e7c047b7343ed3919ac0ee83775",
@@ -11870,10 +11870,10 @@ const RESOURCES = {
 // The application shell files that are downloaded before a service worker can
 // start.
 const CORE = [
-  "main.dart.js",
-"/",
+  "/",
+"main.dart.js",
 "index.html",
-"assets/LICENSE",
+"assets/NOTICES",
 "assets/AssetManifest.json",
 "assets/FontManifest.json"];
 
@@ -11881,7 +11881,8 @@ const CORE = [
 self.addEventListener("install", (event) => {
   return event.waitUntil(
     caches.open(TEMP).then((cache) => {
-      return cache.addAll(CORE);
+      // Provide a 'reload' param to ensure the latest version is downloaded.
+      return cache.addAll(CORE.map((value) => new Request(value, {'cache': 'reload'})));
     })
   );
 });
@@ -11900,6 +11901,7 @@ self.addEventListener("activate", function(event) {
       // When there is no prior manifest, clear the entire cache.
       if (!manifest) {
         await caches.delete(CACHE_NAME);
+        contentCache = await caches.open(CACHE_NAME);
         for (var request of await tempCache.keys()) {
           var response = await tempCache.match(request);
           await contentCache.put(request, response);
@@ -11949,7 +11951,11 @@ self.addEventListener("activate", function(event) {
 self.addEventListener("fetch", (event) => {
   var origin = self.location.origin;
   var key = event.request.url.substring(origin.length + 1);
-  // If the URL is not the the RESOURCE list, skip the cache.
+  // Redirect URLs to the index.html
+  if (event.request.url == origin || event.request.url.startsWith(origin + '/#')) {
+    key = '/';
+  }
+  // If the URL is not the RESOURCE list, skip the cache.
   if (!RESOURCES[key]) {
     return event.respondWith(fetch(event.request));
   }
@@ -11957,8 +11963,10 @@ self.addEventListener("fetch", (event) => {
     .then((cache) =>  {
       return cache.match(event.request).then((response) => {
         // Either respond with the cached resource, or perform a fetch and
-        // lazily populate the cache.
-        return response || fetch(event.request).then((response) => {
+        // lazily populate the cache. Ensure the resources are not cached
+        // by the browser for longer than the service worker expects.
+        var modifiedRequest = new Request(event.request, {'cache': 'reload'});
+        return response || fetch(modifiedRequest).then((response) => {
           cache.put(event.request, response.clone());
           return response;
         });
@@ -11967,3 +11975,35 @@ self.addEventListener("fetch", (event) => {
   );
 });
 
+self.addEventListener('message', (event) => {
+  // SkipWaiting can be used to immediately activate a waiting service worker.
+  // This will also require a page refresh triggered by the main worker.
+  if (event.data === 'skipWaiting') {
+    return self.skipWaiting();
+  }
+
+  if (event.message === 'downloadOffline') {
+    downloadOffline();
+  }
+});
+
+// Download offline will check the RESOURCES for all files not in the cache
+// and populate them.
+async function downloadOffline() {
+  var resources = [];
+  var contentCache = await caches.open(CACHE_NAME);
+  var currentContent = {};
+  for (var request of await contentCache.keys()) {
+    var key = request.url.substring(origin.length + 1);
+    if (key == "") {
+      key = "/";
+    }
+    currentContent[key] = true;
+  }
+  for (var resourceKey in Object.keys(RESOURCES)) {
+    if (!currentContent[resourceKey]) {
+      resources.push(resourceKey);
+    }
+  }
+  return contentCache.addAll(resources);
+}
