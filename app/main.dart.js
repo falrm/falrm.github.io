@@ -32929,7 +32929,7 @@ $0:function(){var s=this.a
 s.V=s.y2=!1},
 $S:0}
 F.acn.prototype={
-$0:function(){this.a.hw("https://play.google.com/store/apps/details?id=com.jonlatane.beatpad")},
+$0:function(){this.a.hw("https://play.google.com/apps/testing/io.beatscratch.beatscratch_flutter_redux")},
 $S:0}
 F.aco.prototype={
 $0:function(){this.a.hw("https://testflight.apple.com/join/dXJr9JJs")},
