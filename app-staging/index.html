@@ -71,6 +71,10 @@ window.onload = function () {
 };
 </script>
 <script>
+      var hashValue = window.location.hash.substr(1);
+      function getPageHashValueOnLoad() {
+        return hashValue;
+      }
       var firebaseConfig = {
         apiKey: "AIzaSyBODLuKyOB3mgwv_QHRjjWT6uGEbAyq2Qw",
         authDomain: "beatscratch-app.firebaseapp.com",
