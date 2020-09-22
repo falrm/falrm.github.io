@@ -1,3 +1,7 @@
+function supportsPlayback() {
+  return typeof(Worker) !== "undefined";
+}
+
 function sendMIDI() {
   if((arguments[0] & 0xF0) == 0x90) {
     console.info("noteOn");
@@ -64,4 +68,24 @@ function updatePartConfiguration(part) {
 var isSynthesizerReady = false;
 function checkSynthesizerStatus() {
     return isSynthesizerReady;
+}
+
+function setKeyboardPart() {
+
+}
+
+function setPlaybackMode() {
+
+}
+
+function setRecordingMelody() {
+
+}
+
+function createScore() {
+
+}
+
+function updateSections() {
+  
 }

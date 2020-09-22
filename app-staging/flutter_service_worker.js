@@ -3,7 +3,7 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
-  "generated/protos/music_pb.js": "7bcdd5247140de586d8a0d1b820cf9b8",
+  "generated/protos/music_pb.js": "92addc528868b012d610fd69fdff0f8f",
 "generated/protos/protobeats_plugin_pb.js": "17cb9d49883b84ae0155fb9366bb7742",
 "MIDI.js/Gruntfile.js": "f82057b59957ac6867174e81c72ec268",
 "MIDI.js/inc/jasmid/stream.js": "c19a95c7fb2ac5c00d2c6bff0de51133",
@@ -233,16 +233,17 @@ const RESOURCES = {
 "MIDI.js/build/MIDI.js": "b97f15732e2f4e2619a360b6938dc4d5",
 "MIDI.js/build/MIDI.min.js": "76afe2fd26a4146a4d8f65d5e074cf54",
 "MIDI.js/LICENSE.txt": "c22fc40d350cad44a54887315bcd5f74",
-"index.html": "661352a107a4f0c20948048d43e39f6f",
-"/": "661352a107a4f0c20948048d43e39f6f",
-"main.dart.js": "7ff3fa7d104b497fe6fac2b08fe893bc",
+"index.html": "3e2472bd788535de9613b401f33791f9",
+"/": "3e2472bd788535de9613b401f33791f9",
+"main.dart.js": "f217a6ce7ca1400540d5323922db10c2",
+"BeatScratchWorker.js": "0fdd9674a3188f5d48eb91f32373974f",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "manifest.json": "b9b822c4a06b7a1ecc06648af835b4fd",
-"BeatScratchPlugin.js": "36a124919f118a86970b94d1c197af11",
+"BeatScratchPlugin.js": "35aa3263be8748a20d387616a8abed56",
 "assets/AssetManifest.json": "0e382922f48d6494e322f375542b2c84",
-"assets/NOTICES": "3972655db727e01b833d704d36acc469",
+"assets/NOTICES": "6f9429f2a829ef89d77b382e99690714",
 "assets/FontManifest.json": "137283b64ac5efa85c42bc5d3f236d93",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "115e937bb829a890521f72d2e664b632",
 "assets/fonts/MaterialIcons-Regular.otf": "a68d2a28c526b3b070aefca4bac93d25",
@@ -11876,13 +11877,12 @@ const CORE = [
 "assets/NOTICES",
 "assets/AssetManifest.json",
 "assets/FontManifest.json"];
-
 // During install, the TEMP cache is populated with the application shell files.
 self.addEventListener("install", (event) => {
   return event.waitUntil(
     caches.open(TEMP).then((cache) => {
-      // Provide a 'reload' param to ensure the latest version is downloaded.
-      return cache.addAll(CORE.map((value) => new Request(value, {'cache': 'reload'})));
+      return cache.addAll(
+        CORE.map((value) => new Request(value + '?revision=' + RESOURCES[value], {'cache': 'reload'})));
     })
   );
 });
@@ -11897,7 +11897,6 @@ self.addEventListener("activate", function(event) {
       var tempCache = await caches.open(TEMP);
       var manifestCache = await caches.open(MANIFEST);
       var manifest = await manifestCache.match('manifest');
-
       // When there is no prior manifest, clear the entire cache.
       if (!manifest) {
         await caches.delete(CACHE_NAME);
@@ -11911,7 +11910,6 @@ self.addEventListener("activate", function(event) {
         await manifestCache.put('manifest', new Response(JSON.stringify(RESOURCES)));
         return;
       }
-
       var oldManifest = await manifest.json();
       var origin = self.location.origin;
       for (var request of await contentCache.keys()) {
@@ -11952,21 +11950,26 @@ self.addEventListener("fetch", (event) => {
   var origin = self.location.origin;
   var key = event.request.url.substring(origin.length + 1);
   // Redirect URLs to the index.html
-  if (event.request.url == origin || event.request.url.startsWith(origin + '/#')) {
+  if (key.indexOf('?v=') != -1) {
+    key = key.split('?v=')[0];
+  }
+  if (event.request.url == origin || event.request.url.startsWith(origin + '/#') || key == '') {
     key = '/';
   }
   // If the URL is not the RESOURCE list, skip the cache.
   if (!RESOURCES[key]) {
     return event.respondWith(fetch(event.request));
   }
+  // If the URL is the index.html, perform an online-first request.
+  if (key == '/') {
+    return onlineFirst(event);
+  }
   event.respondWith(caches.open(CACHE_NAME)
     .then((cache) =>  {
       return cache.match(event.request).then((response) => {
         // Either respond with the cached resource, or perform a fetch and
-        // lazily populate the cache. Ensure the resources are not cached
-        // by the browser for longer than the service worker expects.
-        var modifiedRequest = new Request(event.request, {'cache': 'reload'});
-        return response || fetch(modifiedRequest).then((response) => {
+        // lazily populate the cache.
+        return response || fetch(event.request).then((response) => {
           cache.put(event.request, response.clone());
           return response;
         });
@@ -11981,7 +11984,6 @@ self.addEventListener('message', (event) => {
   if (event.data === 'skipWaiting') {
     return self.skipWaiting();
   }
-
   if (event.message === 'downloadOffline') {
     downloadOffline();
   }
@@ -12006,4 +12008,26 @@ async function downloadOffline() {
     }
   }
   return contentCache.addAll(resources);
+}
+
+// Attempt to download the resource online before falling back to
+// the offline cache.
+function onlineFirst(event) {
+  return event.respondWith(
+    fetch(event.request).then((response) => {
+      return caches.open(CACHE_NAME).then((cache) => {
+        cache.put(event.request, response.clone());
+        return response;
+      });
+    }).catch((error) => {
+      return caches.open(CACHE_NAME).then((cache) => {
+        return cache.match(event.request).then((response) => {
+          if (response != null) {
+            return response;
+          }
+          throw error;
+        });
+      });
+    })
+  );
 }

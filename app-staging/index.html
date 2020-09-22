@@ -71,23 +71,27 @@ window.onload = function () {
 };
 </script>
 <script>
-      var hashValue = window.location.hash.substr(1);
-      function getPageHashValueOnLoad() {
-        return hashValue;
-      }
-      var firebaseConfig = {
-        apiKey: "AIzaSyBODLuKyOB3mgwv_QHRjjWT6uGEbAyq2Qw",
-        authDomain: "beatscratch-app.firebaseapp.com",
-        databaseURL: "https://beatscratch-app.firebaseio.com",
-        projectId: "beatscratch-app",
-        storageBucket: "beatscratch-app.appspot.com",
-        messagingSenderId: "238172930148",
-        appId: "1:238172930148:web:9a24f905165fa0cd141f71",
-        measurementId: "G-09GPFJ5SY7"
-      };
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
-      firebase.analytics();
+  if (window.location.hash.startsWith("#score=")) {
+    window.location.hash = window.location.hash.replace("score=","/score/");
+    location.reload();
+  }
+//      var hashValue = window.location.hash.substr(1);
+//      function getPageHashValueOnLoad() {
+//        return hashValue;
+//      }
+//      var firebaseConfig = {
+//        apiKey: "AIzaSyBODLuKyOB3mgwv_QHRjjWT6uGEbAyq2Qw",
+//        authDomain: "beatscratch-app.firebaseapp.com",
+//        databaseURL: "https://beatscratch-app.firebaseio.com",
+//        projectId: "beatscratch-app",
+//        storageBucket: "beatscratch-app.appspot.com",
+//        messagingSenderId: "238172930148",
+//        appId: "1:238172930148:web:9a24f905165fa0cd141f71",
+//        measurementId: "G-09GPFJ5SY7"
+//      };
+//      // Initialize Firebase
+//      firebase.initializeApp(firebaseConfig);
+//      firebase.analytics();
   </script>
 <!-- This script installs service_worker.js to provide PWA functionality to
      application. For more information, see:
@@ -95,10 +99,10 @@ window.onload = function () {
 <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
-        navigator.serviceWorker.register('flutter_service_worker.js');
+        navigator.serviceWorker.register('flutter_service_worker.js?v=2496909286');
       });
     }
   </script>
-<script src="main.dart.js" type="application/javascript"></script>
+<script src="main.dart.js?v=2496909286" type="application/javascript"></script>
 </body>
 </html>

@@ -28,6 +28,7 @@ goog.exportSymbol('proto.NoteSign', null, global);
 goog.exportSymbol('proto.Part', null, global);
 goog.exportSymbol('proto.Score', null, global);
 goog.exportSymbol('proto.Section', null, global);
+goog.exportSymbol('proto.Section.Color', null, global);
 goog.exportSymbol('proto.Tempo', null, global);
 goog.exportSymbol('proto.Tempo.Transition', null, global);
 /**
@@ -3046,6 +3047,17 @@ proto.Section.serializeBinaryToWriter = function(message, writer) {
   }
 };
 
+
+/**
+ * @enum {number}
+ */
+proto.Section.Color = {
+  MAJOR: 0,
+  MINOR: 1,
+  DOMINANT: 2,
+  AUGMENTED: 3,
+  DIMINISHED: 4
+};
 
 /**
  * optional string id = 1;
