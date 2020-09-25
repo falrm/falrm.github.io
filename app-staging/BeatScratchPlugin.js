@@ -70,22 +70,30 @@ function checkSynthesizerStatus() {
     return isSynthesizerReady;
 }
 
-function setKeyboardPart() {
+function setKeyboardPart(partId) {
 
 }
 
-function setPlaybackMode() {
+function setColorboardPart(partId) {
 
 }
 
-function setRecordingMelody() {
+function setPlaybackMode(mode) {
 
 }
 
-function createScore() {
+function setRecordingMelody(melodyId) {
 
 }
 
-function updateSections() {
+function createScore(score) {
+
+}
+
+function updateSections(score) {
   
+}
+
+function setCurrentSection(section) {
+
 }
