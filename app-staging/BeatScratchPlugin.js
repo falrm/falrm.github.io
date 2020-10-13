@@ -70,30 +70,83 @@ function checkSynthesizerStatus() {
     return isSynthesizerReady;
 }
 
-function setKeyboardPart(partId) {
-
+var currentScore;
+var beatScratchWorker = new Worker('BeatScratchWorker.js');
+beatScratchWorker.onmessage = function(event) {
+  switch (event.data.shift()) {
+    case 'sendMIDI':
+      sendMIDI(...event.data);
+      break;
+    case 'notifyPlayingBeat':
+      notifyPlayingBeat(event.data[0]);
+      break;
+    case 'notifyPaused':
+      notifyPaused();
+      break;
+    case 'notifyCurrentSection':
+      notifyCurrentSection(event.data[0]);
+      break;
+  }
 }
 
-function setColorboardPart(partId) {
+function play() {
+  beatScratchWorker.postMessage(['play']);
+}
 
+function pause() {
+  beatScratchWorker.postMessage(['pause']);
+}
+
+function stop() {
+  beatScratchWorker.postMessage(['stop']);
+}
+
+function setKeyboardPart(partId) {
+  // Only really needed when we support MIDI keyboard input (i.e. over USB or Bluetooth)
 }
 
 function setPlaybackMode(mode) {
-
+  beatScratchWorker.postMessage(['setPlaybackMode', mode]);
 }
 
 function setRecordingMelody(melodyId) {
-
+  // Not supported on web
 }
 
 function createScore(score) {
-
+  currentScore = score;
+  beatScratchWorker.postMessage(['createScore', score]);
 }
 
 function updateSections(score) {
-  
+  currentScore.sections = score.sections;
+  beatScratchWorker.postMessage(['updateSections', score]);
 }
 
-function setCurrentSection(section) {
+function setCurrentSection(sectionId) {
+  beatScratchWorker.postMessage(['setCurrentSection', sectionId]);
+}
 
+function setBeat(beat) {
+  beatScratchWorker.postMessage(['setBeat', beat]);
+}
+
+function createMelody(partId, melody) {
+  beatScratchWorker.postMessage(['createMelody', partId, melody]);
+}
+
+function updateMelody(melody) {
+  beatScratchWorker.postMessage(['updateMelody', melody]);
+}
+
+function deletePart(partId) {
+  beatScratchWorker.postMessage(['deletePart', partId]);
+}
+
+function setRecordingMelody(melodyId) {
+  // Not supported in web app yet
+}
+
+function setMetronomeEnabled(enabled) {
+  beatScratchWorker.postMessage(['setMetronomeEnabled', enabled]);
 }
