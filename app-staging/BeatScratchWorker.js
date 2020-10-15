@@ -121,11 +121,12 @@ function tick() {
   currentTick++;
 
   var now = Date.now();
-  var tickTime = 60000 / (bpm * ticksPerBeat);
+  var tickTime = Math.round(60000 / (bpm * ticksPerBeat));
+//  console.log('ticktime=' + tickTime);
   setTimeout(() => {
     while (Date.now() < now + tickTime) {}
     if (playing) tick();
-  });
+  }, tickTime * 0.8);
 }
 
 function doTick(section) {
@@ -141,8 +142,8 @@ function doTick(section) {
       var melodyPosition = currentBeat * melody.subdivisionsPerBeat + correspondingPosition;
       var midiChange = melody.midiData.data[melodyPosition % melody.length];
       if (midiChange) {
-        console.log(midiChange);
         // Proto3 encodes the MIDI data to a base64 string; decode it.
+//        console.log("midiChange " + midiChange.data + " at tick=" + currentTick + ", time=" + (Date.now()/1000));
         var midiData = Uint8Array.from(atob(midiChange.data), c => c.charCodeAt(0));
         processAndSendMIDIData(midiData, part.instrument.midiChannel, melodyReference);
       }
@@ -168,7 +169,8 @@ function processAndSendMIDIData(data, channel, melodyReference) {
         });
       } else {
         activeAttacks = activeAttacks
-          .filter(attack => attack.melodyId != melodyId || attack.midiNote != data[index + 1]);
+          .filter(attack => attack.melodyId != melodyReference.melodyId
+            || attack.midiNote != data[index + 1]);
       }
       index += 3;
     } else {
@@ -199,6 +201,7 @@ function clearNonSectionActiveAttacks() {
 
 function playMetronome() {
   if (metronomeEnabled) {
+//    console.log("playMetronome at tick=" + currentTick + ", time=" + (Date.now()/1000));
     sendMIDI(0x99, 75, 127)
     sendMIDI(0x89, 75, 127)
   }
