@@ -34952,10 +34952,10 @@ l=E.y5(T.bg(H.a([new T.b1(C.A,o,o,l,o),new T.b1(C.A,o,o,T.aK(j,C.l,C.k),o)],k),C
 j=n?0:180
 s=p.a0?o:new F.af_(p)
 j=G.al(new T.az(new V.u(5,0,0,0),O.aT(L.X("Download App",o,o,o,o,o),o,o,s,o),o),o,C.i,o,C.j,o,o,j)
-s=L.X("BeatScratch is pre-release software.\nBugs and missing features abound.\nmacOS/iOS/Android apps have playback, recording, and better performance.",o,o,o,A.as(o,o,C.f,o,o,o,o,o,o,o,o,12,o,C.ad,o,o,!0,o,o,o,o,o,o),o)
+s=L.X("BeatScratch is pre-release software.\nBugs and missing features abound.\nmacOS/iOS/Android apps have recording and better performance.",o,o,o,A.as(o,o,C.f,o,o,o,o,o,o,o,o,12,o,C.ad,o,o,!0,o,o,o,o,o,o),o)
 r=F.aj(a,!1).a
 q=n?0:180
-q=Math.max(0,r.a-865-q)
+q=Math.max(0,r.a-792-q)
 q=T.R(E.y5(T.aK(H.a([j,new T.az(new V.u(5,0,5,0),s,o),G.al(T.af(o,o,o),o,C.i,o,C.j,o,o,q),new T.az(new V.u(5,0,5,0),O.aT(L.X("Privacy",o,o,o,o,o),o,o,new F.af0(p),o),o),new T.az(new V.u(0,0,5,0),O.aT(L.X("Docs",o,o,o,o,o),o,o,new F.af1(p),o),o)],k),C.l,C.k),o,o,C.n),1)
 s=p.gf2()
 return G.al(T.aK(H.a([new T.az(new V.u(5,0,5,0),l,o),q,new T.az(new V.u(0,0,5,0),O.aT(L.X("OK!",o,o,o,o,o),s,o,new F.af2(p),o),o)],k),C.l,C.k),new P.C(4280361249),C.i,o,C.j,m,o,o)},
