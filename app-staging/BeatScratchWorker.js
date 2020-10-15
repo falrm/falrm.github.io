@@ -143,7 +143,7 @@ function tick() {
   setTimeout(() => {
     while (Date.now() < now + tickTime) {}
     if (playing) tick();
-  }, tickTime * 0.8);
+  }, 0);
 }
 
 function doTick(section) {
