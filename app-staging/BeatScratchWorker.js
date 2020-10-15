@@ -9,6 +9,7 @@ var currentSectionId;
 var metronomeEnabled = true;
 var activeAttacks = [];
 var ticksPerBeat = 24;
+var lastCountInBeatTime = null;
 
 self.onmessage = function (event) {
   switch (event.data.shift()) {
@@ -57,12 +58,28 @@ self.onmessage = function (event) {
       part.melodies = part.melodies.filter(m => m.id != melody.id);
       part.melodies.push(melody);
       break;
+    case 'createPart':
+      currentScore.parts.push(event.data[0]);
+      break;
     case 'deletePart':
       currentScore.parts = currentScore.parts.filter(part => part.id != event.data[0]);
       break;
     case 'setMetronomeEnabled':
       metronomeEnabled = event.data[0];
       break;
+    case 'countIn':
+      var time = Date.now();
+      playMetronome();
+      if (lastCountInBeatTime == null) {
+        lastCountInBeatTime = time;
+      } else if (time - lastCountInBeatTime < 3000) {
+        var periodMs = time - lastCountInBeatTime;
+        bpm = 60000 / periodMs;
+        lastCountInBeatTime = null;
+        currentTick = -24;
+        playing = true;
+        tick();
+      }
     default:
       throw 'invalid call to worker';
   }
@@ -213,7 +230,7 @@ function notifyPlayingBeat() {
 }
 
 function notifyCurrentSection() {
-  postMessage(['notifyPlayingBeat', currentSectionId]);
+  postMessage(['notifyCurrentSection', currentSectionId]);
 }
 
 function notifyPaused(beat) {

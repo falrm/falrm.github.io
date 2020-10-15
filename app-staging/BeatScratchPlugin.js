@@ -3,14 +3,11 @@ function supportsPlayback() {
 }
 
 function sendMIDI() {
-//  console.log("sendMIDI " + [...arguments] + " at time=" + (Date.now()/1000));
   if((arguments[0] & 0xF0) == 0x90) {
-//    console.info("noteOn");
     var note = arguments[1];
     var channel = arguments[0] & 0xF;
     MIDI.noteOn(channel, note, arguments[2], 0);
   } else if((arguments[0] & 0xF0) == 0x80) {
-//    console.info("noteOff");
     var note = arguments[1];
     var channel = arguments[0] & 0xF;
     MIDI.noteOff(channel, note, 0);
@@ -21,29 +18,15 @@ function sendMIDI() {
 }
 
 function createPart(part) {
-  var part = JSON.parse(arguments[0]);
-  var midiChannel = part[3][4]; // Derived from protos
-  var midiInstrument = part[3][5];
-  isSynthesizerReady = false;
-  if(midiChannel != 9) {
-      MIDI.loadPlugin({
-          soundfontUrl: "FluidR3_GM/",
-          instrument: midiInstrument,
-          onprogress: function(state, progress) {
-              console.log(state, progress);
-          },
-          onsuccess: function() {
-            isSynthesizerReady = true;
-            MIDI.channels[midiChannel].instrument = midiInstrument;
-          }
-      });
-  }
+  if(typeof part == 'string') part = JSON.parse(part);
+  beatScratchWorker.postMessage(['createPart', part]);
+  updatePartConfiguration(part);
 }
 
 function updatePartConfiguration(part) {
-  var part = JSON.parse(arguments[0]);
-  var midiChannel = part[3][4]; // Derived from protos
-  var midiInstrument = part[3][5];
+  if(typeof part == 'string') part = JSON.parse(part);
+  var midiChannel = part.instrument.midiChannel;
+  var midiInstrument = part.instrument.midiInstrument;
   isSynthesizerReady = false;
   if(midiChannel != 9) {
       MIDI.loadPlugin({
@@ -111,6 +94,7 @@ function setRecordingMelody(melodyId) {
 function createScore(score) {
   currentScore = score;
   beatScratchWorker.postMessage(['createScore', score]);
+  score.parts.forEach(updatePartConfiguration);
 }
 
 function updateSections(score) {
@@ -144,4 +128,8 @@ function setRecordingMelody(melodyId) {
 
 function setMetronomeEnabled(enabled) {
   beatScratchWorker.postMessage(['setMetronomeEnabled', enabled]);
+}
+
+function countIn(countInBeat) {
+  beatScratchWorker.postMessage(['countIn', countInBeat]);
 }
