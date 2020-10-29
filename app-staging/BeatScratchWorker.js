@@ -4,7 +4,8 @@ var currentScore;
 var playing = false;
 var playbackMode = 'score';
 var currentTick = 0;
-var bpm = 123;
+var unmultipliedBpm = 123;
+var bpmMultiplier = 1;
 var currentSectionId;
 var metronomeEnabled = true;
 var activeAttacks = [];
@@ -37,10 +38,12 @@ self.onmessage = function (event) {
       currentScore.sections = event.data[0].sections;
       if (!currentScore.sections.some(s => s.id == currentSectionId)) {
         currentSectionId = currentScore.sections[0].id;
+        bpm = findCurrentSection().tempo.bpm;
       }
       break;
     case 'setCurrentSection':
       currentSectionId = event.data[0];
+      bpm = findCurrentSection().tempo.bpm;
       break;
     case 'setBeat':
       currentTick = event.data[0] * ticksPerBeat;
@@ -67,6 +70,9 @@ self.onmessage = function (event) {
     case 'setMetronomeEnabled':
       metronomeEnabled = event.data[0];
       break;
+    case 'setBpmMultiplier':
+      bpmMultiplier = event.data[0];
+      break;
     case 'countIn':
       var time = Date.now();
       playMetronome();
@@ -74,7 +80,9 @@ self.onmessage = function (event) {
         lastCountInBeatTime = time;
       } else if (time - lastCountInBeatTime < 3000) {
         var periodMs = time - lastCountInBeatTime;
-        bpm = 60000 / periodMs;
+        var multipliedBpm = 60000 / periodMs;
+        bpmMultiplier = multipliedBpm / unmultipliedBpm;
+        notifyBpmMultiplier();
         lastCountInBeatTime = null;
         currentTick = -24;
         playing = true;
@@ -113,7 +121,9 @@ function tick() {
     currentTick = 0;
     if (playbackMode == 'score') {
       if (sectionIndex + 1 < currentScore.sections.length) {
-        currentSectionId = currentScore.sections[sectionIndex + 1].id;
+        var newCurrentSection = currentScore.sections[sectionIndex + 1];
+        currentSectionId = newCurrentSection.id;
+        bpm = newCurrentSection.tempo.bpm;
         notifyCurrentSection();
       } else {
         currentSectionId = currentScore.sections[0].id;
@@ -138,7 +148,7 @@ function tick() {
   currentTick++;
 
   var now = Date.now();
-  var tickTime = Math.round(60000 / (bpm * ticksPerBeat));
+  var tickTime = Math.round(60000 / (unmultipliedBpm * bpmMultiplier * ticksPerBeat));
 //  console.log('ticktime=' + tickTime);
   setTimeout(() => {
     while (Date.now() < now + tickTime) {}
@@ -231,6 +241,10 @@ function notifyPlayingBeat() {
 
 function notifyCurrentSection() {
   postMessage(['notifyCurrentSection', currentSectionId]);
+}
+
+function notifyBpmMultiplier() {
+  postMessage(['notifyBpmMultiplier', bpmMultiplier]);
 }
 
 function notifyPaused(beat) {

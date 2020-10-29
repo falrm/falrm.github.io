@@ -64,6 +64,9 @@ beatScratchWorker.onmessage = function(event) {
     case 'notifyCurrentSection':
       notifyCurrentSection(event.data[0]);
       break;
+    case 'notifyBpmMultiplier':
+      notifyBpmMultiplier(event.data[0]);
+      break;
   }
 }
 
@@ -132,4 +135,8 @@ function setMetronomeEnabled(enabled) {
 
 function countIn(countInBeat) {
   beatScratchWorker.postMessage(['countIn', countInBeat]);
+}
+
+function setBpmMultiplier(bpmMultiplier) {
+  beatScratchWorker.postMessage(['setBpmMultiplier', bpmMultiplier]);
 }
