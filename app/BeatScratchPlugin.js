@@ -67,6 +67,9 @@ beatScratchWorker.onmessage = function(event) {
     case 'notifyBpmMultiplier':
       notifyBpmMultiplier(event.data[0]);
       break;
+    case 'notifyUnmultipliedBpm':
+      notifyUnmultipliedBpm(event.data[0]);
+      break;
   }
 }
 
