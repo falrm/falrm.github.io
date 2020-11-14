@@ -1,0 +1,38 @@
+{
+  "applinks": {
+      "details": [
+           {
+             "appIDs": [ "Q94XRK95RTio.beatscratch.beatscratchFlutterRedux", ],
+             "components": [
+               {
+                  "#": "no_universal_links",
+                  "exclude": true,
+                  "comment": "Matches any URL whose fragment equals no_universal_links and instructs the system not to open it as a universal link"
+               },
+               {
+                  "/": "/app",
+                  "comment": "App Links"
+               },
+               {
+                  "/": "/app-staging",
+                  "comment": "Staging App Links"
+               },
+               {
+                  "/": "/help/website/*",
+                  "exclude": true,
+                  "comment": "Matches any URL whose path starts with /help/website/ and instructs the system not to open it as a universal link"
+               },
+               {
+                  "/": "/help/*",
+                  "?": { "articleNumber": "????" },
+                  "exclude": true,
+                  "comment": "Matches any URL whose path starts with /help/ and which has a query item with name 'articleNumber' and a value of exactly 4 characters, and excludes it"
+               }
+             ]
+           }
+       ]
+   },
+   "webcredentials": {
+      "apps": [ "Q94XRK95RT.io.beatscratch.beatscratchFlutterRedux" ]
+   },
+}

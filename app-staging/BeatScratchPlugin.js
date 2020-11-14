@@ -44,7 +44,7 @@ function updatePartConfiguration(part) {
 }
 
 var isSynthesizerReady = false;
-function checkSynthesizerStatus() {
+function checkBeatScratchAudioStatus() {
     return isSynthesizerReady;
 }
 
