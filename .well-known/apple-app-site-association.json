@@ -2,7 +2,7 @@
   "applinks": {
       "details": [
            {
-             "appIDs": [ "Q94XRK95RTio.beatscratch.beatscratchFlutterRedux", ],
+             "appIDs": [ "Q94XRK95RT.io.beatscratch.beatscratchFlutterRedux" ],
              "components": [
                {
                   "#": "no_universal_links",
@@ -34,5 +34,5 @@
    },
    "webcredentials": {
       "apps": [ "Q94XRK95RT.io.beatscratch.beatscratchFlutterRedux" ]
-   },
+   }
 }
