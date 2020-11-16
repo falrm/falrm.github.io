@@ -14,8 +14,8 @@
                   "comment": "App Links"
                },
                {
-                  "/": "/app-staging",
-                  "comment": "Staging App Links"
+                  "/": "/app/",
+                  "comment": "App Links"
                },
                {
                   "/": "/help/website/*",
