@@ -12,6 +12,12 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="shortcut icon" type="image/png" href="favicon.png" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			thead th { position: sticky; top: 0; }
+thead { position: sticky; top: 0; }
+
+
+		</style>
 	</head>
 	<body class="is-loading">
 
@@ -47,45 +53,22 @@
 							<div style="overflow-x: scroll;overflow-y: hidden;white-space: nowrap;">
 								<table>
 									<thead>
-										<tr><td colspan="5"><br/><h2>Pre-Release Features</h2></td></tr>
+										<!-- <tr><td colspan="5"><br/><h2>Pre-Release Features</h2></td></tr> -->
 										<tr>
-											<td style="width:10%;"></td>
-											<td style="width:22.5; min-width:180px;"><h3>macOS</h3></td>
-											<td style="width:22.5; min-width:180px;"><h3>iOS</h3></td>
-											<td style="width:22.5; min-width:180px;"><h3>Android<br/>(and ChromeOS)</h3></td>
-											<td style="width:22.5; min-width:180px;"><h3>Web</h3></td>
+											<th style="width:10%;"></td>
+											<th style="width:22.5; min-width:180px;"><h3>macOS</h3></td>
+											<th style="width:22.5; min-width:180px;"><h3>iOS</h3></td>
+											<th style="width:22.5; min-width:180px;"><h3>Android<br/>(and ChromeOS)</h3></td>
+											<th style="width:22.5; min-width:180px;"><h3>Web</h3></td>
 										</tr>
 									</thead>
-									<tr><td><h4 style="transform:translate(0,-10px)">Play<br/>On-Screen<br/>Keyboard</h4></td>
-										<td colspan="4"><p><h2>Yes</h2></p></td>
-									</tr>
-									<tr><td><h4 style="transform:translate(0,-10px)">Sequencer<br/>Playback</h4></td>
-										<td colspan="4"><p><h2>Yes</h2></p></td>
-										<!-- <td colspan="1"><p><h5>Planned</h5></p></td> -->
-									</tr>
-									<tr><td><h4 style="transform:translate(0,-10px)">Realtime<br/>Playback<br/>Performance</h4></td>
-										<td colspan="3"><p><h2>Yes</h2></p></td>
-										<td colspan="1"><p><h2>No</h2></p></td>
-									</tr>
-									<tr><td><h4 style="transform:translate(0,-10px)">Sequencer<br/>Recording</h4></td>
-										<td colspan="3"><p><h2>Yes</h2></td>
-										<td colspan="1"><p><h2>No</h2></p></td>
-									</tr>
-									<tr><td><h4 style="transform:translate(0,-10px)">Play<br/>Connected<br/>MIDI<br/>Controller</h4></td>
-										<td colspan="3"><p><h2>Yes</h2></p></td>
-										<td colspan="1"><p>
-											<h5>Planned;<br/><a href="https://caniuse.com/#search=midi">See caniuse.com</a></h5>
-										</p></td>
-									</tr>
-									<tr><td><h4>128<br/>MIDI<br/>Sounds<br/>+<br/>Drum Patch</h4></td>
-										<td colspan="3"><p><h2>Yes</h2></p></td>
-										<td colspan="1"><p><h5>127; "synth drums"<br/>are the drum patch.</h5></p></td>
-									</tr>
+									<tbody>
 									<tr>
-										<td><h2>Try It</h2></td>
+										<td><h2>Get it</h2></td>
 										<td>
 											<a class="icon" href="https://www.dropbox.com/s/71jclv5a5tgd1c7/BeatFlutter.tar.bz2?dl=1" style="top:13px;">
 												<img style="background-color: grey;" src="assets/macos-download.png" width="150" height="47">
+												<h5>Re-download<br/>to update</h5>
 											</a>
 										</td>
 										<td>
@@ -99,6 +82,71 @@
 											</a>
 										</td>
 										<td><a href="app"><h2>Open</h2></a></td>
+									</tr>
+									<tr><td><h4 style="transform:translate(0,-10px)">Play<br/>On-Screen<br/>Keyboard</h4></td>
+										<td colspan="4"><p><h2>Yes</h2></p></td>
+									</tr>
+									<tr><td><h4 style="transform:translate(0,-10px)">Playback</h4></td>
+										<td colspan="4"><p><h2>Yes</h2></p></td>
+										<!-- <td colspan="1"><p><h5>Planned</h5></p></td> -->
+									</tr>
+									<tr><td><h4 style="transform:translate(0,-10px)">Recording</h4></td>
+										<td colspan="3"><p><h2>Yes</h2></td>
+										<td colspan="1"><p><h2>No</h2></p></td>
+									</tr>
+									<tr><td><h4 style="transform:translate(0,-10px)">Edit/arrange<br/>recordings and<br/>share links</h4></td>
+										<td colspan="4"><p><h2>Yes</h2></p></td>
+										<!-- <td colspan="1"><p><h5>Planned</h5></p></td> -->
+									</tr>
+									<tr><td><h4>MIDI<br/>Channels<br/>Supported<br/></h4></td>
+										<td colspan="1"><h2><br/>16</h2></td>
+										<td colspan="1"><h2><br/>5</h2></td>
+										<td colspan="1"><h2><br/>16</h2></td>
+										<td colspan="1"><h2><br/>16</h2></td>
+									</tr>
+									<tr><td><h4>128<br/>MIDI<br/>Sounds<br/>+<br/>Drum Patch</h4></td>
+										<td colspan="3"><p><h2>Yes</h2></p></td>
+										<td colspan="1"><p><h5>127; "synth drums"<br/>are the drum patch.</h5></p></td>
+									</tr>
+									<tr><td><h4 style="transform:translate(0,-10px)">Play<br/>Connected<br/>MIDI<br/>Controllers</h4></td>
+										<td colspan="3"><p><h2>Yes</h2></p></td>
+										<td colspan="1"><p>
+											<h5>Planned;<br/><a href="https://caniuse.com/#search=midi">See caniuse.com</a></h5>
+										</p></td>
+									</tr>
+									<tr><td><h4 style="transform:translate(0,30px)">Bluetooth<br/>Controller<br/>Support</h4></td>
+										<td style="transform:translate(0,20px)" colspan="2"><h4>Your choice of app</h4>
+											<h5>(e.g.
+												<a href="https://apps.apple.com/us/app/bluetooth-midi-connect/id1108321791">KORG's iOS app</a>,<br/>
+												<a href="https://apps.apple.com/us/app/bluetooth-midi-connect/id1074606480">KORG's macOS app</a>,<br/>
+												<a href="https://apps.apple.com/us/app/midimittr/id925495245">midimttr for iOS</a>
+											)</h5></td>
+										<td colspan="1">
+											<h5>Your choice, but</h5>
+											<h4><a href="https://play.google.com/store/apps/details?id=com.mobileer.example.midibtlepairing&hl=en_US&gl=US">
+												Mobileer<br/>MIDI BLE Connect
+											</a></h4><h5>integrates<br/>into the UI</h5></td>
+										<td colspan="1"><h2>No</h2></td>
+									</tr>
+									<tr><td><h4 style="transform:translate(0,-10px)">Play<br/>Connected<br/>MIDI<br/>Sythnesizers</h4></td>
+										<td colspan="2"><p><h2>No</h2></p></td>
+										<td colspan="1"><p><h2>Yes</h2></p></td>
+										<td colspan="1"><p>
+											<h5>Planned;<br/><a href="https://caniuse.com/#search=midi">See caniuse.com</a></h5>
+										</p></td>
+									</tr>
+									<tr><td><h4 style="transform:translate(0,-10px)">Integrated<br/>Synthesizer<br/>Speed/<br/>Quality</h4></td>
+										<td colspan="2"><p><h2>Excellent</h2></p></td>
+										<td colspan="1"><h2>Good</h2>
+											<h5>Near-excellent<br/>with</h5>
+											<h4><a href="https://play.google.com/store/apps/details?id=net.volcanomobile.fluidsynthmidi&hl=en_US&gl=US">
+												Volcano Mobile<br/>FluidSynth<br/>MIDI Synthesizer
+											</a></h4>
+										</td>
+										<td colspan="1">
+											<h2>Eh...</h2>
+											<h5>Can your<br/>browser<br/>run <i>FarCry</i>?</h5>
+										</td>
 									</tr>
 										
 										<tr><td colspan="5"><br/><h2>Architectural Components:</h2></td></tr>
@@ -119,6 +167,7 @@
 											<td colspan="1"><a href="https://github.com/FluidSynth/fluidsynth/">FluidSynth</a></td>
 											<td colspan="1"><a href="https://github.com/mudcube/MIDI.js/">MIDI.js</a></td>
 										</tr>
+										</tbody>
 								</table>
 							</div>
 							</article>
