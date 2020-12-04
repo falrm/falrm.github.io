@@ -82,24 +82,10 @@ function updatePartConfiguration(part, updateSynthesizerReady = true) {
 }
 
 function muteAllInstrumentsForFiveSeconds(startTime = Date.now()) {
-  if (Date.now() < startTime + 5000) {
-    MIDI.stopAllNotes();
-    setTimeout(() => muteAllInstrumentsForFiveSeconds(startTime));
-  }
-  // var midiChannelInstruments = {};
-  // var midiChannelVolumes = {};
-  // for(i in MIDI.channels) {
-  //   midiChannelInstruments[i] = MIDI.channels[i].instrument;
-  //   MIDI.channels[i].instrument = null;
-  //   midiChannelVolumes[i] = MIDI.channels[i].volume;
-  //   MIDI.channels[i].volume = 0;
+  // if (Date.now() < startTime + 5000) {
+  //   MIDI.stopAllNotes();
+  //   setTimeout(() => muteAllInstrumentsForFiveSeconds(startTime));
   // }
-  // setTimeout(() => {
-  //   for(i in MIDI.channels) {
-  //     MIDI.channels[i].instrument = midiChannelInstruments[i];
-  //     MIDI.channels[i].volume = midiChannelVolumes[i];
-  //   }
-  // }, 5000);
 }
 
 function play() {
