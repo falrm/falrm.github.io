@@ -81,13 +81,6 @@ function updatePartConfiguration(part, updateSynthesizerReady = true) {
   }
 }
 
-function muteAllInstrumentsForFiveSeconds(startTime = Date.now()) {
-  // if (Date.now() < startTime + 5000) {
-  //   MIDI.stopAllNotes();
-  //   setTimeout(() => muteAllInstrumentsForFiveSeconds(startTime));
-  // }
-}
-
 function play() {
   beatScratchWorker.postMessage(['play']);
 }
@@ -95,15 +88,11 @@ function play() {
 function pause() {
   beatScratchWorker.postMessage(['pause']);
   notifyPaused();
-  MIDI.stopAllNotes();
-  muteAllInstrumentsForFiveSeconds()
 }
 
 function stop() {
   beatScratchWorker.postMessage(['stop']);
   notifyPaused();
-  MIDI.stopAllNotes();
-  muteAllInstrumentsForFiveSeconds()
 }
 
 function setKeyboardPart(partId) {
