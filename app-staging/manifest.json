@@ -1,11 +1,11 @@
 {
-    "name": "beatscratch_flutter_redux",
-    "short_name": "beatscratch_flutter_redux",
+    "name": "BeatScratch",
+    "short_name": "BeatScratch",
     "start_url": ".",
     "display": "minimal-ui",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Music player and editor. Native apps perform *much* better than the web player.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

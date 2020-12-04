@@ -12,6 +12,14 @@ var activeAttacks = [];
 var ticksPerBeat = 24;
 var lastCountInBeatTime = null;
 
+// MIDI prerendering: Rather than take the approach of rendering everything in realtime,
+// we will send data to sendMIDIAtTime a beat ahead of time, with appropriate delays.
+var usePreRendering = true;
+var preRenderBeatsAhead = 2;
+var nextPreRenderBeat = { startTime: null, beat: null, sectionId: null };
+// If not set, prerender system will assign from Date.now(), possibly with a mandatory initial delay
+var preRenderEffectiveTime;
+
 self.onmessage = function (event) {
   switch (event.data.shift()) {
     case 'play':
@@ -19,12 +27,12 @@ self.onmessage = function (event) {
       tick();
       break;
     case 'pause':
-      playing = false;
-      clearActiveAttacks();
+      pause();
+      notifyPaused();
       break;
     case 'stop':
-      playing = false;
-      clearActiveAttacks();
+      pause();
+      notifyPaused();
       currentTick = 0;
       break;
     case 'setPlaybackMode':
@@ -32,17 +40,17 @@ self.onmessage = function (event) {
       break;
     case 'createScore':
       currentScore = event.data[0];
-      setCurrentSection(currentScore.sections[0]);
+      setCurrentSection(currentScore.sections[0], false, true);
       break;
     case 'updateSections':
       currentScore.sections = event.data[0].sections;
       if (!currentScore.sections.some(s => s.id == currentSectionId)) {
-        setCurrentSection(currentScore.sections[0]);
+        setCurrentSection(currentScore.sections[0], false, false);
       }
       break;
     case 'setCurrentSection':
       currentSectionId = event.data[0];
-      setCurrentSection(findCurrentSection(), false);
+      setCurrentSection(findCurrentSection(), false, false);
       break;
     case 'setBeat':
       currentTick = event.data[0] * ticksPerBeat;
@@ -72,6 +80,9 @@ self.onmessage = function (event) {
     case 'setBpmMultiplier':
       bpmMultiplier = event.data[0];
       break;
+    case 'setUsePreRendering':
+      usePreRendering = event.data[0];
+      break;
     case 'countIn':
       var time = Date.now();
       playMetronome();
@@ -93,17 +104,43 @@ self.onmessage = function (event) {
 }
 
 function sendMIDI(...bytes) {
+  if (usePreRendering) {
+    sendMIDIAtTime(preRenderEffectiveTime, ...bytes);
+  } else {
+    sendMIDINow(...bytes)
+  }
+}
+
+function sendMIDIAtTime(time, ...bytes) {
+  postMessage(['sendMIDIAtTime', time, Date.now(), ...bytes ]);
+}
+
+function sendMIDINow(...bytes) {
   postMessage(['sendMIDI', ...bytes ]);
+}
+
+function effectiveBpm() {
+  return Math.max(8, unmultipliedBpm * bpmMultiplier);
 }
 
 function findCurrentSection() {
   return currentScore.sections.filter(it => it.id == currentSectionId)[0];
 }
 
-function setCurrentSection(section, notify = true) {
+function findSectionAfter(section) {
+  var index = currentScore.sections.findIndex((it) => it.id == section.id);
+  if (index >= 0 && index < sections.length - 1) {
+    return currentScore.sections[index + 1];
+  }
+  return null;
+}
+
+function setCurrentSection(section, notify = false, notifyStarted = false) {
   currentSectionId = section.id;
   if (notify) {
     notifyCurrentSection();
+  } else if (notifyStarted) {
+    notifyStartedSection();
   }
   unmultipliedBpm = findCurrentSection().tempo.bpm;
   notifyUnmultipliedBpm();
@@ -121,7 +158,22 @@ function findPartAndMelody(melodyId) {
   return null;
 }
 
+function setupPreRenderingForBeat() {
+  nextPreRenderBeat = {
+    startTime: preRenderEffectiveTime || Date.now() + 100, // This 100ms latency when starting playback makes things smoother.
+    beat: parseInt(currentTick / ticksPerBeat),
+    sectionId: currentSectionId,
+  };
+  if (!preRenderEffectiveTime) {
+    preRenderEffectiveTime = nextPreRenderBeat.startTime;
+  }
+}
+
 function tick() {
+  if (usePreRendering && (nextPreRenderBeat === null || nextPreRenderBeat.startTime === null)) {
+    preRenderEffectiveTime = null;
+    setupPreRenderingForBeat();
+  }
   var section = findCurrentSection();
   var harmony = section.harmony;
   if (currentTick >= ticksPerBeat * harmony.length / harmony.subdivisionsPerBeat) {
@@ -130,9 +182,9 @@ function tick() {
     if (playbackMode == 'score') {
       if (sectionIndex + 1 < currentScore.sections.length) {
         var newCurrentSection = currentScore.sections[sectionIndex + 1];
-        setCurrentSection(newCurrentSection);
+        setCurrentSection(newCurrentSection, false, true);
       } else {
-        setCurrentSection(currentScore.sections[0]);
+        setCurrentSection(currentScore.sections[0], false, true);
         notifyPlayingBeat();
         pause();
         return;
@@ -146,18 +198,35 @@ function tick() {
       clearNonSectionActiveAttacks();
     }
     notifyPlayingBeat();
-    // recordBeat();
   }
   doTick(section);
   currentTick++;
 
   var now = Date.now();
-  var tickTime = Math.round(60000 / (unmultipliedBpm * bpmMultiplier * ticksPerBeat));
-//  console.log('ticktime=' + tickTime);
-  setTimeout(() => {
-    while (Date.now() < now + tickTime) {}
-    if (playing) tick();
-  }, 0);
+  var tickTime = Math.round(60000 / (effectiveBpm() * ticksPerBeat));
+  if (usePreRendering) {
+    preRenderEffectiveTime += tickTime;
+    if (currentTick % ticksPerBeat == 0) {
+      setupPreRenderingForBeat();
+      var now = Date.now();
+      var timeToRenderNextBeat = nextPreRenderBeat.startTime - (preRenderBeatsAhead * (60000 / effectiveBpm()));
+      var timeToWait = Math.min(0, timeToRenderNextBeat);
+      timeToWait = parseInt(timeToWait * 0.5);
+      // Timeout only between beats when prerendering, maybe just a 0 timeout.
+      setTimeout(() => {
+        while (Date.now() < timeToRenderNextBeat) {}
+        if (playing) tick();
+      }, timeToWait);
+    } else {
+      // Prerender til the end of the beat without timeouts
+      if (playing) tick();
+    }
+  } else {
+    setTimeout(() => {
+      while (Date.now() < now + tickTime) {}
+      if (playing) tick();
+    }, 0);
+  }
 }
 
 function doTick(section) {
@@ -179,7 +248,6 @@ function doTick(section) {
         processAndSendMIDIData(midiData, part.instrument.midiChannel, melodyReference);
       }
     }
-    // TODO playback actual data from melody
   });
 }
 
@@ -240,11 +308,15 @@ function playMetronome() {
 
 function notifyPlayingBeat() {
   var beat = currentTick / ticksPerBeat;
-  postMessage(['notifyPlayingBeat', beat]);
+  postMessage(['notifyPlayingBeat', beat, preRenderEffectiveTime]);
 }
 
 function notifyCurrentSection() {
-  postMessage(['notifyCurrentSection', currentSectionId]);
+  postMessage(['notifyCurrentSection', currentSectionId, preRenderEffectiveTime]);
+}
+
+function notifyStartedSection() {
+  postMessage(['notifyStartedSection', currentSectionId, preRenderEffectiveTime]);
 }
 
 function notifyBpmMultiplier() {
@@ -259,7 +331,10 @@ function play() {
   playing = true;
 }
 
-function pause(beat) {
+function pause() {
   playing = false;
-  postMessage(['notifyPaused']);
+  postMessage(['notifyPaused', preRenderEffectiveTime]);
+  nextPreRenderBeat = null;
+  preRenderEffectiveTime = null;
+  clearActiveAttacks();
 }

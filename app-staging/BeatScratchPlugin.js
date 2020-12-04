@@ -1,12 +1,23 @@
+
+
+var isSynthesizerReady = false;
+var currentScore;
+var beatScratchWorker = new Worker('BeatScratchWorker.js');
+
 function supportsPlayback() {
   return typeof(Worker) !== "undefined";
+}
+
+function checkBeatScratchAudioStatus() {
+    return isSynthesizerReady;
 }
 
 function sendMIDI() {
   if((arguments[0] & 0xF0) == 0x90) {
     var note = arguments[1];
     var channel = arguments[0] & 0xF;
-    MIDI.noteOn(channel, note, arguments[2], 0);
+    var velocity = arguments[2];
+    MIDI.noteOn(channel, note, velocity, 0);
   } else if((arguments[0] & 0xF0) == 0x80) {
     var note = arguments[1];
     var channel = arguments[0] & 0xF;
@@ -17,17 +28,41 @@ function sendMIDI() {
   }
 }
 
+function sendMIDIAtTime() {
+  var args = [...arguments];
+  var time = args.shift();
+  var timeSent = args.shift();
+  // time += Date.now() - timeSent;
+  var delay = Math.max(0, (time - Date.now())/1000);
+  if((args[0] & 0xF0) == 0x90) {
+    var note = args[1];
+    var channel = args[0] & 0xF;
+    var velocity = args[2];
+    MIDI.noteOn(channel, note, velocity, delay);
+  } else if((args[0] & 0xF0) == 0x80) {
+    var note = args[1];
+    var channel = args[0] & 0xF;
+    MIDI.noteOff(channel, note, delay);
+  } else {
+    console.info("unmatched args:");
+    console.info(args);
+  }
+}
+
 function createPart(part) {
   if(typeof part == 'string') part = JSON.parse(part);
   beatScratchWorker.postMessage(['createPart', part]);
   updatePartConfiguration(part);
 }
 
-function updatePartConfiguration(part) {
+function updatePartConfiguration(part, updateSynthesizerReady = true) {
   if(typeof part == 'string') part = JSON.parse(part);
   var midiChannel = part.instrument.midiChannel;
   var midiInstrument = part.instrument.midiInstrument;
-  isSynthesizerReady = false;
+  if (updateSynthesizerReady) {
+    isSynthesizerReady = false;
+    notifyBeatScratchAudioAvailable(isSynthesizerReady);
+  }
   if(midiChannel != 9) {
       MIDI.loadPlugin({
           soundfontUrl: "FluidR3_GM/",
@@ -36,41 +71,35 @@ function updatePartConfiguration(part) {
               console.log(state, progress);
           },
           onsuccess: function() {
-            isSynthesizerReady = true;
+            if (updateSynthesizerReady) {
+              isSynthesizerReady = true;
+              notifyBeatScratchAudioAvailable(isSynthesizerReady);
+            }
             MIDI.channels[midiChannel].instrument = midiInstrument;
           }
       });
   }
 }
 
-var isSynthesizerReady = false;
-function checkBeatScratchAudioStatus() {
-    return isSynthesizerReady;
-}
-
-var currentScore;
-var beatScratchWorker = new Worker('BeatScratchWorker.js');
-beatScratchWorker.onmessage = function(event) {
-  switch (event.data.shift()) {
-    case 'sendMIDI':
-      sendMIDI(...event.data);
-      break;
-    case 'notifyPlayingBeat':
-      notifyPlayingBeat(event.data[0]);
-      break;
-    case 'notifyPaused':
-      notifyPaused();
-      break;
-    case 'notifyCurrentSection':
-      notifyCurrentSection(event.data[0]);
-      break;
-    case 'notifyBpmMultiplier':
-      notifyBpmMultiplier(event.data[0]);
-      break;
-    case 'notifyUnmultipliedBpm':
-      notifyUnmultipliedBpm(event.data[0]);
-      break;
+function muteAllInstrumentsForFiveSeconds(startTime = Date.now()) {
+  if (Date.now() < startTime + 5000) {
+    MIDI.stopAllNotes();
+    setTimeout(() => muteAllInstrumentsForFiveSeconds(startTime));
   }
+  // var midiChannelInstruments = {};
+  // var midiChannelVolumes = {};
+  // for(i in MIDI.channels) {
+  //   midiChannelInstruments[i] = MIDI.channels[i].instrument;
+  //   MIDI.channels[i].instrument = null;
+  //   midiChannelVolumes[i] = MIDI.channels[i].volume;
+  //   MIDI.channels[i].volume = 0;
+  // }
+  // setTimeout(() => {
+  //   for(i in MIDI.channels) {
+  //     MIDI.channels[i].instrument = midiChannelInstruments[i];
+  //     MIDI.channels[i].volume = midiChannelVolumes[i];
+  //   }
+  // }, 5000);
 }
 
 function play() {
@@ -79,10 +108,16 @@ function play() {
 
 function pause() {
   beatScratchWorker.postMessage(['pause']);
+  notifyPaused();
+  MIDI.stopAllNotes();
+  muteAllInstrumentsForFiveSeconds()
 }
 
 function stop() {
   beatScratchWorker.postMessage(['stop']);
+  notifyPaused();
+  MIDI.stopAllNotes();
+  muteAllInstrumentsForFiveSeconds()
 }
 
 function setKeyboardPart(partId) {
@@ -100,7 +135,12 @@ function setRecordingMelody(melodyId) {
 function createScore(score) {
   currentScore = score;
   beatScratchWorker.postMessage(['createScore', score]);
-  score.parts.forEach(updatePartConfiguration);
+
+  isSynthesizerReady = false;
+  notifyBeatScratchAudioAvailable(isSynthesizerReady);
+  score.parts.forEach((p) => updatePartConfiguration(p, false));
+  isSynthesizerReady = true;
+  notifyBeatScratchAudioAvailable(isSynthesizerReady);
 }
 
 function updateSections(score) {
@@ -142,4 +182,53 @@ function countIn(countInBeat) {
 
 function setBpmMultiplier(bpmMultiplier) {
   beatScratchWorker.postMessage(['setBpmMultiplier', bpmMultiplier]);
+}
+
+function setUsePreRendering(value) {
+  beatScratchWorker.postMessage(['setUsePreRendering', value]);
+}
+
+beatScratchWorker.onmessage = function(event) {
+  switch (event.data.shift()) {
+    case 'sendMIDI':
+      sendMIDI(...event.data);
+      break;
+    case 'sendMIDIAtTime':
+      sendMIDIAtTime(...event.data);
+      break;
+    case 'notifyPlayingBeat':
+      if(event.data[1]) {
+        setTimeout(() => notifyPlayingBeat(event.data[0]), Math.max(0, event.data[1] - Date.now() + 10));
+      } else {
+        notifyPlayingBeat(event.data[0]);
+      }
+      break;
+    case 'notifyPaused':
+      if(event.data[0]) {
+        setTimeout(notifyPaused, Math.max(0, event.data[0] - Date.now() + 10));
+      } else {
+        notifyPaused();
+      }
+      break;
+    case 'notifyCurrentSection':
+      if(event.data[1]) {
+        setTimeout(() => notifyCurrentSection(event.data[0]), Math.max(0, event.data[1] - Date.now() + 10));
+      } else {
+        notifyCurrentSection(event.data[0]);
+      }
+      break;
+    case 'notifyStartedSection':
+      if(event.data[1]) {
+        setTimeout(() => notifyStartedSection(event.data[0]), Math.max(0, event.data[1] - Date.now() + 10));
+      } else {
+        notifyStartedSection(event.data[0]);
+      }
+      break;
+    case 'notifyBpmMultiplier':
+      notifyBpmMultiplier(event.data[0]);
+      break;
+    case 'notifyUnmultipliedBpm':
+      notifyUnmultipliedBpm(event.data[0]);
+      break;
+  }
 }
