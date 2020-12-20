@@ -28,11 +28,9 @@ self.onmessage = function (event) {
       break;
     case 'pause':
       pause();
-      notifyPaused();
       break;
     case 'stop':
       pause();
-      notifyPaused();
       currentTick = 0;
       break;
     case 'setPlaybackMode':
@@ -241,11 +239,15 @@ function doTick(section) {
       var currentBeat = Math.floor(currentTick / ticksPerBeat);
       var melodyPosition = currentBeat * melody.subdivisionsPerBeat + correspondingPosition;
       var midiChange = melody.midiData.data[melodyPosition % melody.length];
-      if (midiChange) {
+      if (midiChange && midiChange.data) {
         // Proto3 encodes the MIDI data to a base64 string; decode it.
 //        console.log("midiChange " + midiChange.data + " at tick=" + currentTick + ", time=" + (Date.now()/1000));
-        var midiData = Uint8Array.from(atob(midiChange.data), c => c.charCodeAt(0));
-        processAndSendMIDIData(midiData, part.instrument.midiChannel, melodyReference);
+        try {
+          var midiData = Uint8Array.from(atob(midiChange.data), c => c.charCodeAt(0));
+          processAndSendMIDIData(midiData, part.instrument.midiChannel, melodyReference);
+        } catch (e) {
+          console.warn("Failed to parse MIDI data in melody", e);
+        }
       }
     }
   });
