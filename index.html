@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>BeatScratch: pocket instrument and staff paper</title>
+		<title>BeatScratch: funk at your fingertips</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -21,7 +21,7 @@
 				<!-- Intro -->
 					<div id="intro">
 						<h1>BeatScratch</h1>
-						<p>pocket instrument and staff paper</p>
+						<p>funk at your fingertips</p>
 						<ul class="actions">
 							<li>
 								<a class="icon" href="https://www.dropbox.com/s/71jclv5a5tgd1c7/BeatFlutter.tar.bz2?dl=1" style="top:20px;">
@@ -48,7 +48,7 @@
 
 				<!-- Header -->
 					<header id="header">
-						<a href="app" class="logo">Web App Preview</a>
+						<a href="." class="logo">BeatScratch</a>
 					</header>
 
 				<!-- Nav -->
@@ -71,21 +71,91 @@
 				<!-- Main -->
 					<div id="main">
 
-						<!-- Featured Post -->
 						<article class="post featured">
 							<header class="major">
+								<h2>BeatScratch</h2>
 								<!--span class="date">April 25, 2017</span-->
-								<h2>BeatFlutter</h2>
+							</header>
+							<h2>Unleash your<br />
+							musical potential</h2>
+							<a href="images/feature_image.png" class="image main" style="max-width: 600px; height: auto; margin-left: auto; margin-right: auto;"><img src="images/feature_image.png" alt="" /></a>
+							<a href="images/feature_image_2.png" class="image main" style="max-width: 600px; height: auto; margin-left: auto; margin-right: auto;"><img src="images/feature_image_2.png" alt="" /></a>
+							<p>
+								BeatScratch is <i>not</i> yet another keyboard app. BeatScratch turns
+								the phone in your pocket into an instrument that can be used to play
+								any song you could want to play, and to make it sound <i>good</i>.
+							</p>
+							<p>
+								In fact it's five instruments in one, all of which can play whatever
+								you want on top of whatever chords you want, and each of which can be
+								configured to sound like any one of 128 General MIDI instruments.
+							</p>
+							<p>
+								BeatScratch is built to be the only MIDI drum and backing track controller
+								you'll ever need, with a UI that lets you compose your ideas on your
+								phone faster than you'll be able to learn to play them on your 
+								instrument.
+							</p>
+							
+							<ul class="actions">
+								<li>
+									<a href="#BeatFlutter">
+										<h2>BeatScratch</h2>
+										<h4>aka BeatFlutter</h4>
+									</a>
+									<ul class="actions">
+										<li>
+											<a class="icon" href="https://www.dropbox.com/s/71jclv5a5tgd1c7/BeatFlutter.tar.bz2?dl=1">
+												<img style="background-color: grey;" src="assets/macos-download.png" width="150" height="47">
+											</a>
+										</li>
+										<li>
+											<a class="icon" href="https://testflight.apple.com/join/dXJr9JJs">
+												<img style="max-width: 100%" src="assets/testflight-badge.png" width="163px" height="63px" />
+											</a>
+										</li>
+										<li>
+											<a class="icon" href="https://play.google.com/apps/testing/io.beatscratch.beatscratch_flutter_redux" >
+												<img style="max-width: 100%" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" width="163px" height="64px" />
+											</a>
+										</li>
+										<li>
+											<a href="app" class="logo" style="padding-top:10px;"><h3>Web Preview</h3></a>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<a href="#LegacyBeatScratch">
+										<h2>Legacy BeatScratch</h2>
+									</a>
+									<ul class="actions">
+										<li>
+											<a class="icon" href="https://play.google.com/store/apps/details?id=com.jonlatane.beatpad">
+												<img style="max-width: 100%" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" width="163px" height="64px" />
+												<br/><span>5-part support: free</span>
+											</a>
+										</li>
+										<li>
+											<a class="icon" href="https://play.google.com/store/apps/details?id=com.jonlatane.beatpad">
+												<img style="max-width: 100%" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" width="163px" height="64px" />
+												<br/><span>8-part support: $5</span>
+											</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</article>
+						<!-- Featured Post -->
+						<article class="post featured" id="BeatFlutter">
+							<header class="major">
+								<!--span class="date">April 25, 2017</span-->
+								<h2>BeatScratch</h2>
+								<h4>aka BeatFlutter</h4>
 							</header>
 							<p>
-								The remainder of this page is about the existing BeatScratch product, an Android-exclusive
-								<a href="https://github.com/Kotlin/anko">Anko</a>/<a href="https://github.com/fluidsynth/fluidsynth">FluidSynth</a>-based
-								music environment. Its next-generation cousin, named BeatFlutter 
-								until it is complete enough to assume the BeatScratch name, can be previewed now on 
-								macOS, iOS, Android, and the Web with 
-								<a href="platforms.html">varying degrees of support on each platform</a>
-								(though mostly they go in that order: priority is being given to the 
-								<a href="href="https://audiokit.org/">AudioKit</a> implementation for Apple platforms).
+								BeatFlutter is the codename for the multiplatform (macOS/iOS/Android/Web) Flutter rewrite of BeatScratch
+								(originally an Android-only app). Legacy BeatScratch is on hold and will be replaced with BeatFlutter,
+								though you can still find download links further down this page.
 							</p>
 							<p>
 								Most docs here have been updated to reflect the pre-release in favor of the legacy app at this point.
@@ -129,13 +199,13 @@
 							</div></p>
 							<p>
 								Features will generally be initially implemented on macOS first, with equivalent iOS versions dropping a few days later 
-								when Apple approves them for TestFlight. (They use shared code, though not via Catalyst.)
+								when Apple approves them for TestFlight.
 							</p>
 							<p>
 								See the <a href="platforms.html">Platforms Page</a> for more details on what features are available on your device.
 							</p>
 							<p>
-								At a high level, whereas the environment for legacy BeatScratch has been oriented around touching the "page" with your
+								At a high level, whereas the environment for Legacy BeatScratch has been oriented around touching the "page" with your
 								thumbs to edit things, BeatFlutter ditches this entirely to orient towards recording what you play. The <a href="https://medium.com/fully-automated-luxury-robot-music/topologica-jazz-orbifolds-and-your-event-sourced-flux-driven-dream-code-f8e24443a941">"magical" chord-manipulation features</a>
 								from legacy BeatScratch and its retired grandparent Topologica will be added in thoughtfully over time to make them as accessible as possible.
 							</p>
@@ -145,29 +215,15 @@
 						</article>
 
 						<!-- Featured Post -->
-							<article class="post featured">
+							<article class="post featured"  id="#LegacyBeatScratch">
 								<header class="major">
 									<h2>BeatScratch Legacy</h2>
 									<!--span class="date">April 25, 2017</span-->
 								</header>
-								<h2>Unleash your<br />
-								musical potential</h2>
-								<a href="images/feature_image.png" class="image main" style="max-width: 600px; height: auto; margin-left: auto; margin-right: auto;"><img src="images/feature_image.png" alt="" /></a>
 								<p>
-								  BeatScratch is <i>not</i> yet another keyboard app. BeatScratch turns
-								  the phone in your pocket into an instrument that can be used to play
-								  any song you could want to play, and to make it sound <i>good</i>.
-								</p>
-								<p>
-								  In fact it's eight instruments in one, all of which can play whatever
-								  you want on top of whatever chords you want, and each of which can be
-								  configured to sound like any one of 128 General MIDI instruments.
-								</p>
-								<p>
-									BeatScratch is built to be the only MIDI drum and backing track controller
-									you'll ever need, with a UI that lets you compose your ideas on your
-									phone faster than you'll be able to learn to play them on your 
-									instrument.
+									BeatScratch Legacy is the first-of-its-kind Android-exclusive
+									<a href="https://github.com/Kotlin/anko">Anko</a>/<a href="https://github.com/fluidsynth/fluidsynth">FluidSynth</a>-based
+									music environment built on the idea of creating harmonies from graphs of chords.
 								</p>
 								<!--ul class="actions">
 									<li><a href="#" class="button big">Full Story</a></li>
