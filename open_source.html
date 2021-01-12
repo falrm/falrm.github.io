@@ -1,0 +1,179 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Open Source: BeatScratch</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="shortcut icon" type="image/png" href="favicon.png" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			thead th { position: sticky; top: 0; }
+thead { position: sticky; top: 0; }
+      pre {
+				display: inline;
+			}
+
+
+		</style>
+	</head>
+	<body class="is-loading">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="./" class="logo">BeatScratch</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li><a href="./">Home</a></li>
+							<li><a href="usage.html">Usage</a></li>
+							<li><a href="platforms.html">Platforms</a></li>
+							<li><a href="hardware.html">Hardware</a></li>
+							<li class="active"><a href="open_source.html">Open Source</a></li>
+							<li><a href="https://medium.com/fully-automated-luxury-robot-music">Blog</a></li>
+							<li><a href="about.html">About</a></li>
+						</ul>
+						</ul>
+						<!--ul class="icons">
+							<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon fa-github"><span class="label">GitHub</span></a></li>
+						</ul-->
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+								<article class="post featured">
+									<h1>Open Source</h1>
+									<p>
+										The GitHub organization maintaining BeatScratch's open-source components is
+										<a style="color:#884DF2" href="https://github.com/falrm" class="icon fa-github"><span class="label">Fully Luxury Automated Robot Music</span>&nbsp;Fully Luxury Automated Robot Music</a>.
+									</p>
+									<p>
+										For the most part the repos there exist only to be merged into their parent
+										repos. However, BeatScratch's storage and sharing formats are open-sourced
+										and MIT-licensed. Standalone repos you may want to hack on or use, and ideas
+										for future open-source standalone repos, are listed below.
+									</p>
+							<div style="overflow-x: scroll;overflow-y: hidden;">
+								<table style="max-width: 1200px;">
+									<thead>
+										<!-- <tr><td colspan="5"><br/><h2>Pre-Release Features</h2></td></tr> -->
+										<tr>
+											<th style="width: 15%; min-width: 100px;">Repo</th>
+											<th style="width: 60%; min-width: 210px;">Description</th>
+											<th style="width: 25%; min-width: 140px;">Status</th>
+											<!-- <th style="width:10%;"></td>
+											<th style="width:22.5; min-width:180px;"><h3>macOS</h3></td>
+											<th style="width:22.5; min-width:180px;"><h3>iOS</h3></td>
+											<th style="width:22.5; min-width:180px;"><h3>Android<br/>(and ChromeOS)</h3></td>
+											<th style="width:22.5; min-width:180px;"><h3>Web</h3></td> -->
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td><h2>
+												<a style="color:#884DF2" href="https://github.com/falrm/protobeats" class="icon fa-github"><span class="label">protobeats</span>&nbsp;<pre>protobeats</pre></a>
+											</h2></td>
+											<!-- <td colspan="2" bgcolor="#4DFA90"><p><h2>Yes</h2></td> -->
+											<td><p>A protobuf file only. All the code and docs you need to open <i>*.beatscratch</i> files and read Score URLs.</p></td>
+											<td bgcolor="#4DFA90"><p></p><h2>Available</h2></p></td>
+										</tr>
+										<tr>
+											<td><h2>
+												<a style="color:#884DF2" href="https://github.com/falrm/beatscratch_plugin#" class="icon fa-github"><span class="label">beatscratch_plugin</span>&nbsp;<pre>beatscratch_plugin</pre></a>
+											</h2></td>
+											<!-- <td colspan="2" bgcolor="#4DFA90"><p><h2>Yes</h2></td> -->
+											<td><p>
+												A Dart plugin that includes <i>protobeats</i> via Git submodule. Provides Dart implementations of File I/O, Score Link usage,
+												the playback engine, and the FluidR3 GM SoundFont.
+											</p></td>
+											<td bgcolor="#CFFA53"><p>
+												<h2>In Progress</h2>
+												<h4>Contribute: Create a PR that gets playback working on Android!</h4>
+												<h4>Contribute: How to distribute a repo that is larger than pub.dev's limitations?</h4>
+												<h4>May exclude iOS/AudiotKit implementations</h4>
+											</p></td>
+										</tr>
+										</tbody>
+								</table>
+							</div>
+							</article>
+
+					</div>
+
+				<!-- Footer -->
+					<!--footer id="footer">
+						<section>
+							<form method="post" action="#">
+								<div class="field">
+									<label for="name">Name</label>
+									<input type="text" name="name" id="name" />
+								</div>
+								<div class="field">
+									<label for="email">Email</label>
+									<input type="text" name="email" id="email" />
+								</div>
+								<div class="field">
+									<label for="message">Message</label>
+									<textarea name="message" id="message" rows="3"></textarea>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Send Message" /></li>
+								</ul>
+							</form>
+						</section>
+						<section class="split contact">
+							<section class="alt">
+								<h3>Address</h3>
+								<p>1234 Somewhere Road #87257<br />
+								Nashville, TN 00000-0000</p>
+							</section>
+							<section>
+								<h3>Phone</h3>
+								<p><a href="#">(000) 000-0000</a></p>
+							</section>
+							<section>
+								<h3>Email</h3>
+								<p><a href="#">info@untitled.tld</a></p>
+							</section>
+							<section>
+								<h3>Social</h3>
+								<ul class="icons alt">
+									<li><a href="#" class="icon alt fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon alt fa-facebook"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon alt fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon alt fa-github"><span class="label">GitHub</span></a></li>
+								</ul>
+							</section>
+						</section>
+					</footer-->
+
+				<!-- Copyright -->
+					<div id="copyright">
+						<ul><li>&copy; 2018 Jon Latan&eacute;</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
