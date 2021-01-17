@@ -3,7 +3,7 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
-  "generated/protos/music_pb.js": "2b2bed9c9e8f0544ca4e18cbc22a1571",
+  "generated/protos/music_pb.js": "6fd6a57d9395302c06139bd353e7e665",
 "generated/protos/protobeats_plugin_pb.js": "13840053dd8da461b0f1bee1e9f22154",
 "MIDI.js/Gruntfile.js": "f82057b59957ac6867174e81c72ec268",
 "MIDI.js/inc/jasmid/stream.js": "c19a95c7fb2ac5c00d2c6bff0de51133",
@@ -233,10 +233,10 @@ const RESOURCES = {
 "MIDI.js/build/MIDI.js": "b97f15732e2f4e2619a360b6938dc4d5",
 "MIDI.js/build/MIDI.min.js": "76afe2fd26a4146a4d8f65d5e074cf54",
 "MIDI.js/LICENSE.txt": "c22fc40d350cad44a54887315bcd5f74",
-"version.json": "5d6e0012a44026988fa8d9d93b82a05a",
-"index.html": "5b90a91346fe21b9771ba8c4aa272eae",
-"/": "5b90a91346fe21b9771ba8c4aa272eae",
-"main.dart.js": "cd7a0b4f517a0c205e88a1a8ca6d288d",
+"version.json": "0fdaafc029ae0213090b83ffcc4fdd1a",
+"index.html": "ae8e620e4882ac488c1b568e3301f641",
+"/": "ae8e620e4882ac488c1b568e3301f641",
+"main.dart.js": "347c487c52735d1b18267392f009f044",
 "BeatScratchWorker.js": "50f9b8e164cab473735409b2e40e6d56",
 "Base24Conversions.js": "27babc44a0f23b949c88355ccfd0d50e",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",

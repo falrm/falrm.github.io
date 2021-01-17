@@ -14,6 +14,7 @@ goog.exportSymbol('proto.Chord', null, global);
 goog.exportSymbol('proto.Harmony', null, global);
 goog.exportSymbol('proto.Instrument', null, global);
 goog.exportSymbol('proto.InstrumentType', null, global);
+goog.exportSymbol('proto.IntervalColor', null, global);
 goog.exportSymbol('proto.KeySwitch', null, global);
 goog.exportSymbol('proto.MelodicAttack', null, global);
 goog.exportSymbol('proto.Melody', null, global);
@@ -31,7 +32,6 @@ goog.exportSymbol('proto.NoteSign', null, global);
 goog.exportSymbol('proto.Part', null, global);
 goog.exportSymbol('proto.Score', null, global);
 goog.exportSymbol('proto.Section', null, global);
-goog.exportSymbol('proto.Section.Color', null, global);
 goog.exportSymbol('proto.SoundFont', null, global);
 goog.exportSymbol('proto.SoundFonts', null, global);
 goog.exportSymbol('proto.Tempo', null, global);
@@ -3492,6 +3492,8 @@ proto.Section.toObject = function(includeInstance, msg) {
     meter: (f = msg.getMeter()) && proto.Meter.toObject(includeInstance, f),
     tempo: (f = msg.getTempo()) && proto.Tempo.toObject(includeInstance, f),
     key: (f = msg.getKey()) && proto.NoteName.toObject(includeInstance, f),
+    transpose: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    color: jspb.Message.getFieldWithDefault(msg, 8, 0),
     melodiesList: jspb.Message.toObjectList(msg.getMelodiesList(),
     proto.MelodyReference.toObject, includeInstance)
   };
@@ -3557,6 +3559,14 @@ proto.Section.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto.NoteName;
       reader.readMessage(value,proto.NoteName.deserializeBinaryFromReader);
       msg.setKey(value);
+      break;
+    case 7:
+      var value = /** @type {number} */ (reader.readSint32());
+      msg.setTranspose(value);
+      break;
+    case 8:
+      var value = /** @type {!proto.IntervalColor} */ (reader.readEnum());
+      msg.setColor(value);
       break;
     case 100:
       var value = new proto.MelodyReference;
@@ -3638,6 +3648,20 @@ proto.Section.serializeBinaryToWriter = function(message, writer) {
       proto.NoteName.serializeBinaryToWriter
     );
   }
+  f = message.getTranspose();
+  if (f !== 0) {
+    writer.writeSint32(
+      7,
+      f
+    );
+  }
+  f = message.getColor();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      8,
+      f
+    );
+  }
   f = message.getMelodiesList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
@@ -3648,17 +3672,6 @@ proto.Section.serializeBinaryToWriter = function(message, writer) {
   }
 };
 
-
-/**
- * @enum {number}
- */
-proto.Section.Color = {
-  MAJOR: 0,
-  MINOR: 1,
-  DOMINANT: 2,
-  AUGMENTED: 3,
-  DIMINISHED: 4
-};
 
 /**
  * optional string id = 1;
@@ -3841,6 +3854,42 @@ proto.Section.prototype.clearKey = function() {
  */
 proto.Section.prototype.hasKey = function() {
   return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * optional sint32 transpose = 7;
+ * @return {number}
+ */
+proto.Section.prototype.getTranspose = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.Section} returns this
+ */
+proto.Section.prototype.setTranspose = function(value) {
+  return jspb.Message.setProto3IntField(this, 7, value);
+};
+
+
+/**
+ * optional IntervalColor color = 8;
+ * @return {!proto.IntervalColor}
+ */
+proto.Section.prototype.getColor = function() {
+  return /** @type {!proto.IntervalColor} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
+};
+
+
+/**
+ * @param {!proto.IntervalColor} value
+ * @return {!proto.Section} returns this
+ */
+proto.Section.prototype.setColor = function(value) {
+  return jspb.Message.setProto3EnumField(this, 8, value);
 };
 
 
@@ -4213,5 +4262,16 @@ proto.MelodyInterpretationType = {
   RELATIVE_TO_A: 11,
   RELATIVE_TO_A_SHARP: 12,
   RELATIVE_TO_B: 13
+};
+
+/**
+ * @enum {number}
+ */
+proto.IntervalColor = {
+  MAJOR: 0,
+  MINOR: 1,
+  PERFECT: 2,
+  AUGMENTED: 3,
+  DIMINISHED: 4
 };
 
