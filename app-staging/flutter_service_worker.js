@@ -233,10 +233,10 @@ const RESOURCES = {
 "MIDI.js/build/MIDI.js": "b97f15732e2f4e2619a360b6938dc4d5",
 "MIDI.js/build/MIDI.min.js": "76afe2fd26a4146a4d8f65d5e074cf54",
 "MIDI.js/LICENSE.txt": "c22fc40d350cad44a54887315bcd5f74",
-"version.json": "e923320ddb036eb2c675c8929e164928",
-"index.html": "3bccebe46ace5813710ffc3f9b21d574",
-"/": "3bccebe46ace5813710ffc3f9b21d574",
-"main.dart.js": "d720ad64e8be38b71cf321493d2030e4",
+"version.json": "27efd7505bb89c76aca4cd18f7f49ede",
+"index.html": "900f75511b18faaa7722e98fbb7ca57f",
+"/": "900f75511b18faaa7722e98fbb7ca57f",
+"main.dart.js": "43fc1a5b5d0375b3f29330828e180972",
 "BeatScratchWorker.js": "50f9b8e164cab473735409b2e40e6d56",
 "Base24Conversions.js": "27babc44a0f23b949c88355ccfd0d50e",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
@@ -245,7 +245,7 @@ const RESOURCES = {
 "manifest.json": "7432c09333954c74bbe19ceeed5da41d",
 "BeatScratchPlugin.js": "495a92cd4834375ff4ef19da3a4489de",
 "assets/AssetManifest.json": "cf4051a80127c6333c092291dee45c95",
-"assets/NOTICES": "9b707798d51a4140858b724195ce06e3",
+"assets/NOTICES": "b01372e0e6e27867c72b9d32aca536fe",
 "assets/FontManifest.json": "1063f58ebc343cc221545bb37f03c6ea",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "115e937bb829a890521f72d2e664b632",
 "assets/packages/font_awesome_flutter/lib/fonts/fa-solid-900.ttf": "d80ca32233940ebadc5ae5372ccd67f9",
@@ -12016,7 +12016,7 @@ async function downloadOffline() {
     }
     currentContent[key] = true;
   }
-  for (var resourceKey in Object.keys(RESOURCES)) {
+  for (var resourceKey of Object.keys(RESOURCES)) {
     if (!currentContent[resourceKey]) {
       resources.push(resourceKey);
     }
