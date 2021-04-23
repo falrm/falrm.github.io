@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Music for everyone!">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="beatscratch_flutter_redux">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/png" href="/favicon.png"/>
+
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script> -->
+
+  <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-analytics.js"></script> -->
+
+  <!-- Add Firebase products that you want to use -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-analytics.js"></script> -->
+
+  <!-- MIDI.js -->
+  <!-- polyfill -->
+  <script src="MIDI.js/inc/shim/Base64.js" type="text/javascript"></script>
+  <script src="MIDI.js/inc/shim/Base64binary.js" type="text/javascript"></script>
+  <script src="MIDI.js/inc/shim/WebAudioAPI.js" type="text/javascript"></script>
+  <!-- midi.js package -->
+  <script src="MIDI.js/js/midi/audioDetect.js" type="text/javascript"></script>
+  <script src="MIDI.js/js/midi/gm.js" type="text/javascript"></script>
+  <script src="MIDI.js/js/midi/loader.js" type="text/javascript"></script>
+  <script src="MIDI.js/js/midi/plugin.audiotag.js" type="text/javascript"></script>
+  <script src="MIDI.js/js/midi/plugin.webaudio.js" type="text/javascript"></script>
+  <script src="MIDI.js/js/midi/plugin.webmidi.js" type="text/javascript"></script>
+  <!-- utils -->
+  <script src="MIDI.js/js/util/dom_request_xhr.js" type="text/javascript"></script>
+  <script src="MIDI.js/js/util/dom_request_script.js" type="text/javascript"></script>
+  <!-- /MIDI.js -->
+
+  <!-- BeatScratch Plugin and Protobuf dependencies -->
+  <!-- No need for web to know about protobuf currently. 
+    Dart jsify/jsifyProto method converts proto obejcts in to JSON for consumption by this page's JS.
+    With no recording, all we ever need to "notify" the Dart UI with are Strings, bools, ints, and doubles. -->
+<!--  <script src="https://cdn.jsdelivr.net/npm/google-closure-library@20200406.0.0/closure/goog/bootstrap/nodejs.min.js"></script>-->
+<!--  <script src="generated/protos/music_pb.js" type="text/javascript"></script>-->
+<!--  <script src="generated/protos/protobeats_plugin_pb.js" type="text/javascript"></script>-->
+  <script src="BeatScratchPlugin.js" type="text/javascript"></script>
+
+  <title>BeatScratch Web Preview</title>
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+<script type="text/javascript">
+window.onload = function () {
+	MIDI.loadPlugin({
+		soundfontUrl: "FluidR3_GM/",
+        instruments: [0,118],
+		onprogress: function(state, progress) {
+			console.log(state, progress);
+		},
+		onsuccess: function() {
+		  isSynthesizerReady = true;
+          MIDI.channels[0].instrument = 0;
+          MIDI.channels[9].instrument = 118; // "Synth Drum" on the Web app is used for MIDI drums.
+          MIDI.setVolume(0, 127);
+		}
+	});
+};
+</script>
+<script>
+  if (window.location.hash.startsWith("#score=")) {
+    window.location.hash = window.location.hash.replace("score=","/score/");
+    location.reload();
+  }
+  </script>
+<!-- This script installs service_worker.js to provide PWA functionality to
+     application. For more information, see:
+     https://developers.google.com/web/fundamentals/primers/service-workers -->
+<script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('flutter_service_worker.js?v=474673052');
+      });
+    }
+  </script>
+<script src="main.dart.js" type="application/javascript"></script>
+</body>
+</html>
