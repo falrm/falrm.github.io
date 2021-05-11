@@ -74,7 +74,14 @@ window.onload = function () {
 
   var searchParams = new URLSearchParams(window.location.search);
   if (searchParams.get('state') && searchParams.get('code')) {
-    notifyScoreUrlOpened(window.location.toString());
+    function sendOAuthData() {
+      if (typeof notifyScoreUrlOpened != 'undefined') {
+        notifyScoreUrlOpened(window.location.toString());
+      } else {
+        setTimeout(sendOAuthData, 3000);
+      }
+    }
+    sendOAuthData();
   }
 };
 </script>
@@ -84,7 +91,7 @@ window.onload = function () {
 <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
-        navigator.serviceWorker.register('flutter_service_worker.js?v=3123017557');
+        navigator.serviceWorker.register('flutter_service_worker.js?v=2865138509');
       });
     }
   </script>
