@@ -72,11 +72,16 @@ window.onload = function () {
 		}
 	});
 
+  // If Reddit OAuth is initiated, pass the auth URL to the Flutter app once
+  // it's initialized. Obscure the state/code URL from the user.
   var searchParams = new URLSearchParams(window.location.search);
   if (searchParams.get('state') && searchParams.get('code')) {
+    var redditAuthUrl = window.location.toString();
+    var nonAuthUrl = [location.protocol, '//', location.host, location.pathname, location.hash].join('');
+    window.history.replaceState(null, null, nonAuthUrl);
     function sendOAuthData() {
       if (typeof notifyScoreUrlOpened != 'undefined') {
-        notifyScoreUrlOpened(window.location.toString());
+        notifyScoreUrlOpened(redditAuthUrl);
       } else {
         setTimeout(sendOAuthData, 3000);
       }
@@ -91,7 +96,7 @@ window.onload = function () {
 <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
-        navigator.serviceWorker.register('flutter_service_worker.js?v=2865138509');
+        navigator.serviceWorker.register('flutter_service_worker.js?v=581444968');
       });
     }
   </script>
