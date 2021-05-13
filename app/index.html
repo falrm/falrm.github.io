@@ -77,11 +77,11 @@ window.onload = function () {
   var searchParams = new URLSearchParams(window.location.search);
   if (searchParams.get('state') && searchParams.get('code')) {
     var redditAuthUrl = window.location.toString();
+    var nonAuthUrl = [location.protocol, '//', location.host, location.pathname].join('');
+    window.history.pushState(null, null, nonAuthUrl);
     function sendOAuthData() {
       if (typeof notifyScoreUrlOpened != 'undefined') {
         notifyScoreUrlOpened(redditAuthUrl);
-        var nonAuthUrl = [location.protocol, '//', location.host, location.pathname, location.hash].join('');
-        setTimeout(() => window.history.pushState(null, null, nonAuthUrl), 5000);
       } else {
         setTimeout(sendOAuthData, 3000);
       }
