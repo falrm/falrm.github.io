@@ -16098,7 +16098,7 @@ while(true)switch(s){case 0:$.dr().dg("play",[])
 q=$.aHD
 if(q!=null)q.hG(!0,"Web playback isn't great. Download the app!")
 q=$.aHD
-if(q!=null)q.nH("You may have to play the Keyboard to allow playback.")
+if(q!=null)q.nH("You may have to play the Keyboard to play.")
 $.bX.$0()
 return P.R(null,r)}})
 return P.S($async$a0y,r)},
