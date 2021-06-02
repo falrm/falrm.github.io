@@ -233,10 +233,10 @@ const RESOURCES = {
 "MIDI.js/build/MIDI.js": "b97f15732e2f4e2619a360b6938dc4d5",
 "MIDI.js/build/MIDI.min.js": "76afe2fd26a4146a4d8f65d5e074cf54",
 "MIDI.js/LICENSE.txt": "c22fc40d350cad44a54887315bcd5f74",
-"version.json": "ecb24a40edb93367330d240955b17f58",
-"index.html": "7bfa2471c0d67c6e63da336443fba64c",
-"/": "7bfa2471c0d67c6e63da336443fba64c",
-"main.dart.js": "5506c205637f888ded88bf40e6f81cb9",
+"version.json": "aef0d0f358a84dd0890361e899db2236",
+"index.html": "29c3daa6f8b0b9e9fca08ba360df5629",
+"/": "29c3daa6f8b0b9e9fca08ba360df5629",
+"main.dart.js": "aa68144e1c536879b9c8cb1d89b5826b",
 "BeatScratchWorker.js": "50f9b8e164cab473735409b2e40e6d56",
 "Base24Conversions.js": "27babc44a0f23b949c88355ccfd0d50e",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
@@ -245,7 +245,7 @@ const RESOURCES = {
 "manifest.json": "7432c09333954c74bbe19ceeed5da41d",
 "BeatScratchPlugin.js": "495a92cd4834375ff4ef19da3a4489de",
 "assets/AssetManifest.json": "250c7e3874710c8e1a105cec1a9be4a2",
-"assets/NOTICES": "a91f7b4833bc98d947429aee13a3ee71",
+"assets/NOTICES": "296cb61d953231802404c754bceb5a30",
 "assets/FontManifest.json": "0829abb7ab9415df85b43a97d7e00de3",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "115e937bb829a890521f72d2e664b632",
 "assets/packages/flutter_icons/fonts/Octicons.ttf": "73b8cff012825060b308d2162f31dbb2",
@@ -267,7 +267,7 @@ const RESOURCES = {
 "assets/packages/font_awesome_flutter/lib/fonts/fa-solid-900.ttf": "dffd9504fcb1894620fa41c700172994",
 "assets/packages/font_awesome_flutter/lib/fonts/fa-regular-400.ttf": "4b6a9b7c20913279a3ad3dd9c96e155b",
 "assets/packages/font_awesome_flutter/lib/fonts/fa-brands-400.ttf": "00bb2b684be61e89d1bc7d75dee30b58",
-"assets/fonts/MaterialIcons-Regular.otf": "1288c9e28052e028aba623321f7826ac",
+"assets/fonts/MaterialIcons-Regular.otf": "4e6447691c9509f7acdbf8a931a85ca1",
 "assets/assets/doubleflat.svg": "3c4c162924ddb2f3ef708f5b56a93563",
 "assets/assets/add.png": "5fb7309a553b1ae4271c6b7ee7ecfc2d",
 "assets/assets/stop.png": "da218e7c047b7343ed3919ac0ee83775",
@@ -11906,7 +11906,7 @@ self.addEventListener("install", (event) => {
   return event.waitUntil(
     caches.open(TEMP).then((cache) => {
       return cache.addAll(
-        CORE.map((value) => new Request(value + '?revision=' + RESOURCES[value], {'cache': 'reload'})));
+        CORE.map((value) => new Request(value, {'cache': 'reload'})));
     })
   );
 });
