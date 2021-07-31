@@ -2,6 +2,7 @@
 /**
  * @fileoverview
  * @enhanceable
+ * @suppress {missingRequire} reports error on implicit type usages.
  * @suppress {messageConventions} JS Compiler reports an error if a variable or
  *     field starts with 'MSG_' and isn't a translatable message.
  * @public
@@ -1370,6 +1371,7 @@ proto.Melody.toObject = function(includeInstance, msg) {
     type: jspb.Message.getFieldWithDefault(msg, 5, 0),
     instrumentType: jspb.Message.getFieldWithDefault(msg, 6, 0),
     interpretationType: jspb.Message.getFieldWithDefault(msg, 7, 0),
+    transpose: jspb.Message.getFieldWithDefault(msg, 8, 0),
     midiData: (f = msg.getMidiData()) && proto.MidiData.toObject(includeInstance, f)
   };
 
@@ -1434,6 +1436,10 @@ proto.Melody.deserializeBinaryFromReader = function(msg, reader) {
     case 7:
       var value = /** @type {!proto.MelodyInterpretationType} */ (reader.readEnum());
       msg.setInterpretationType(value);
+      break;
+    case 8:
+      var value = /** @type {number} */ (reader.readSint32());
+      msg.setTranspose(value);
       break;
     case 101:
       var value = new proto.MidiData;
@@ -1515,6 +1521,13 @@ proto.Melody.serializeBinaryToWriter = function(message, writer) {
   if (f !== 0.0) {
     writer.writeEnum(
       7,
+      f
+    );
+  }
+  f = message.getTranspose();
+  if (f !== 0) {
+    writer.writeSint32(
+      8,
       f
     );
   }
@@ -1652,6 +1665,24 @@ proto.Melody.prototype.getInterpretationType = function() {
  */
 proto.Melody.prototype.setInterpretationType = function(value) {
   return jspb.Message.setProto3EnumField(this, 7, value);
+};
+
+
+/**
+ * optional sint32 transpose = 8;
+ * @return {number}
+ */
+proto.Melody.prototype.getTranspose = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.Melody} returns this
+ */
+proto.Melody.prototype.setTranspose = function(value) {
+  return jspb.Message.setProto3IntField(this, 8, value);
 };
 
 
