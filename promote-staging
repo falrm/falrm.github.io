@@ -1,0 +1,9 @@
+#/usr/bin/env sh
+
+# Paths assume pwd is directory of build script.
+cd "$(dirname "$0")"
+
+echo "Copying base app..."
+cp -r app-staging/* app/ 
+echo "Copying Skia app..."
+cp -r app-staging-skia/* app-skia/
