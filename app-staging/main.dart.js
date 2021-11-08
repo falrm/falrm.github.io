@@ -56119,8 +56119,9 @@ $0(){var s,r,q=this,p=q.b,o=p.a
 switch(o.r){case C.dl:s=q.c
 if(s!=null){o.z.JW(s)
 p.a.Q.snk("")}break
-case C.cx:s=q.a
-s.a.Bn(o.z).b4(0,new T.ajM(s,p),t.P)
+case C.cx:if($.a24)o.z.shL("Universe Score")
+o=q.a
+o.a.Bn(p.a.z).b4(0,new T.ajM(o,p),t.P)
 break
 default:o=q.c
 r=o==null?null:U.ln(o)
@@ -56235,7 +56236,6 @@ m.a.bq(1,o.c)
 q=m
 s=1
 break}catch(j){H.a2(j)
-if($.a24)a.shL("Universe Score")
 try{m=a.wa(k,o.c)
 q=m
 s=1
