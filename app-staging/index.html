@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html style="height:100%">
 <head>
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
@@ -54,7 +54,7 @@
   <title>BeatScratch Web Preview</title>
   <link rel="manifest" href="manifest.json">
 </head>
-<body>
+<body style="height:100%; background-image: url('../assets/logo.svg'), linear-gradient(#884DF2, #424242); background-repeat: no-repeat;  background-attachment: fixed; background-position: center;">
 
 <script type="text/javascript">
 window.onload = function () {
@@ -96,7 +96,7 @@ window.onload = function () {
 <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
-        navigator.serviceWorker.register('flutter_service_worker.js?v=1667625012');
+        navigator.serviceWorker.register('flutter_service_worker.js?v=1300550014');
       });
     }
   </script>
