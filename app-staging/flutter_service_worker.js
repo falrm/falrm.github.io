@@ -233,10 +233,10 @@ const RESOURCES = {
 "MIDI.js/build/MIDI.js": "b97f15732e2f4e2619a360b6938dc4d5",
 "MIDI.js/build/MIDI.min.js": "76afe2fd26a4146a4d8f65d5e074cf54",
 "MIDI.js/LICENSE.txt": "c22fc40d350cad44a54887315bcd5f74",
-"version.json": "c509cdb7df0db856cfb085777ebb03dc",
-"index.html": "1f73f118c339ab081a69745bb541c6e3",
-"/": "1f73f118c339ab081a69745bb541c6e3",
-"main.dart.js": "9dc43e1ad43eb30b229cfaf532eb9723",
+"version.json": "cad6a1787b30ea3333e6dac86065bf69",
+"index.html": "9692aaaf7e46e55a792de0f948989f56",
+"/": "9692aaaf7e46e55a792de0f948989f56",
+"main.dart.js": "1b96ec9d6efb470e03fb78f73639e24f",
 "BeatScratchWorker.js": "50f9b8e164cab473735409b2e40e6d56",
 "Base24Conversions.js": "27babc44a0f23b949c88355ccfd0d50e",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
@@ -245,7 +245,7 @@ const RESOURCES = {
 "manifest.json": "7432c09333954c74bbe19ceeed5da41d",
 "BeatScratchPlugin.js": "495a92cd4834375ff4ef19da3a4489de",
 "assets/AssetManifest.json": "250c7e3874710c8e1a105cec1a9be4a2",
-"assets/NOTICES": "15226610e9d2f69a424de8e1c36b0f62",
+"assets/NOTICES": "4694883a9b6ce09aef6dc8ed50907d08",
 "assets/FontManifest.json": "0829abb7ab9415df85b43a97d7e00de3",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "115e937bb829a890521f72d2e664b632",
 "assets/packages/flutter_icons/fonts/Octicons.ttf": "73b8cff012825060b308d2162f31dbb2",
@@ -267,7 +267,7 @@ const RESOURCES = {
 "assets/packages/font_awesome_flutter/lib/fonts/fa-solid-900.ttf": "dffd9504fcb1894620fa41c700172994",
 "assets/packages/font_awesome_flutter/lib/fonts/fa-regular-400.ttf": "4b6a9b7c20913279a3ad3dd9c96e155b",
 "assets/packages/font_awesome_flutter/lib/fonts/fa-brands-400.ttf": "00bb2b684be61e89d1bc7d75dee30b58",
-"assets/fonts/MaterialIcons-Regular.otf": "4e6447691c9509f7acdbf8a931a85ca1",
+"assets/fonts/MaterialIcons-Regular.otf": "7e7a6cccddf6d7b20012a548461d5d81",
 "assets/assets/doubleflat.svg": "3c4c162924ddb2f3ef708f5b56a93563",
 "assets/assets/add.png": "5fb7309a553b1ae4271c6b7ee7ecfc2d",
 "assets/assets/stop.png": "da218e7c047b7343ed3919ac0ee83775",
@@ -11889,10 +11889,10 @@ const RESOURCES = {
 "FluidR3_GM/glockenspiel-mp3/Bb7.mp3": "8dd26c1b267ac92725516116776d9d46",
 "FluidR3_GM/telephone_ring-ogg.js": "1409564b32914e59f99cf1a8b02d2d25",
 "FluidR3_GM/tinkle_bell-ogg.js": "ab30aba1dd900f189f6364b92ed0a48d",
-"canvaskit/canvaskit.js": "43fa9e17039a625450b6aba93baf521e",
-"canvaskit/profiling/canvaskit.js": "f3bfccc993a1e0bfdd3440af60d99df4",
-"canvaskit/profiling/canvaskit.wasm": "a9610cf39260f60fbe7524a785c66101",
-"canvaskit/canvaskit.wasm": "04ed3c745ff1dee16504be01f9623498"
+"canvaskit/canvaskit.js": "c2b4e5f3d7a3d82aed024e7249a78487",
+"canvaskit/profiling/canvaskit.js": "ae2949af4efc61d28a4a80fffa1db900",
+"canvaskit/profiling/canvaskit.wasm": "95e736ab31147d1b2c7b25f11d4c32cd",
+"canvaskit/canvaskit.wasm": "4b83d89d9fecbea8ca46f2f760c5a9ba"
 };
 
 // The application shell files that are downloaded before a service worker can
